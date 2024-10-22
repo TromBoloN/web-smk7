@@ -1,0 +1,375 @@
+    /* General body styling */
+    body {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 400;
+        background: #fafafa;
+        overflow-x: hidden;
+        margin: 0;
+        padding: 0;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        clear: both;
+        font-weight: 500;
+        color: #484848;
+        font-family: "Montserrat";
+        font-weight: 400;
+    }
+
+    h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        line-height: 1.2;
+        color: #003a8f;  /* Matching text color */
+    }
+
+    p {
+        font-size: 1.2rem;
+        line-height: 1.6;
+        color: #484848;
+        font-weight: 400;
+    }
+
+    header {
+        background: rgba(15,78,163,0.9);
+    }
+
+    img {
+        border: 0;
+        height: auto;
+        max-width: 100%;
+        vertical-align: middle;
+    }
+    
+    p {
+        margin-bottom: 1.6em;
+        line-height: 1.6;
+        font-size: 14px;
+        font-family: "Montserrat";
+        font-weight: 400;
+    }
+
+    
+
+    /* General Body Layout */
+    .container {
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .row {
+        margin-right: -15px;
+        margin-left: -15px;
+    }
+
+    /* Navbar */
+    .navbar {
+        background-color: transparent;
+        padding: 15px 0; /* Adjust padding */
+        position: relative;
+        z-index: 10;
+        max-width: 60%;
+        margin: 0 450px; 
+        display: flex;
+        justify-content: space-between; 
+        align-items: center; 
+    }
+
+
+    .navbar-brand {
+        color: #ffffff;
+        font-size: 1.8rem;
+        font-weight: bold;
+        margin-right: 30px;
+    }
+
+    .navbar-brand img {
+        width: 240px;
+        height: auto;
+        padding-bottom: 5px;
+    }
+
+    .nav-item {
+        margin-left: 20px; /* Add gap between the navbar items */
+    }
+
+
+    .navbar-nav .nav-link { 
+        color: #ffffff; /* Keep the links white */
+        font-size: 13px;
+        text-transform: uppercase;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 500;
+        margin-right: 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        text-transform: uppercase;
+    }
+
+    .navbar-nav .nav-link:hover {
+        color: #f4a261; /* Orange color on hover */
+    }
+
+    .navbar .dropdown:hover .dropdown-menu {
+        display: block;
+        margin-top: 0;
+    }
+
+    .navbar .dropdown-menu {
+        display: none;
+        transition: all 0.3s ease-in-out;
+        border: 1px solid #fff;
+        border-radius: 1px;
+        padding: 10px 0;
+    }
+
+    .navbar .dropdown-item {
+        font-size: 14px;
+        text-transform: uppercase;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 500;
+        padding: 10px 20px;
+    }
+
+    .navbar .dropdown-item:hover {
+        background-color: #f4a261; /* Change background on hover for clarity */
+        color: #003a8f; /* Darker color for text when hovered */
+    }
+
+    .navbar .dropdown:hover>.dropdown-menu {
+        display: block;
+    }
+
+    .navbar .dropdown-toggle::after {
+        display: none;
+    }
+
+    .nav-item .fa-search {
+        font-size: 19px !important; /* Adjust size as needed */
+        color: #ffffff;
+        padding-top: 8px;
+    }
+
+
+    .navbar-nav .nav-item .fa-search:hover {
+        color: #f4a261; /* Hover color */
+    }
+
+    /* Content Layout */
+.blog-post-content {
+    padding: 40px 0; /* Adjust padding to control top and bottom spacing */
+}
+
+.blog-post-content .area-img img {
+    width: 100%;
+    height: auto;
+}
+
+.blog-post-content .area-content {
+    margin-top: 20px; /* Adds space between the image and title */
+}
+
+.blog-post-content .area-content h2 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+/* Blog Stats */
+.blog-stats {
+    display: flex;
+    gap: 35px;
+    margin-bottom: 20px;
+    font-size: 12px;
+}
+
+.blog-stats > span {
+    display: flex;
+    align-items: center;
+    color: #666; /* Adjust color to a neutral tone */
+}
+
+.blog-stats > span i {
+    margin-right: 8px;
+    font-size: 12px;
+}
+
+/* Post Content */
+.post-content-body {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #333;
+    margin-top: 20px;
+}
+
+/* Sidebar Styles */
+
+
+    /* Comment Styling */
+
+    .comment-respond h3.comment-reply-title {
+        color: #484848;
+        font-size: 20px;
+        margin-bottom: 5px;
+        font-family: "Montserrat";
+        font-weight: 400;
+    }
+
+    .comment-respond .comment-form-comment {
+        margin-bottom: 55px;
+    }
+
+    .comment-respond {
+        padding: 25px 0 55px;
+        clear: both;
+    }
+
+    .post-password-form input[type="text"], .post-password-form input[type="email"], .post-password-form input[type="url"], .post-password-form input[type="password"], .post-password-form input[type="search"], textarea {
+        padding: 0.375em;
+        width: 100%;
+    }
+
+    .comment-respond textarea, .comment-respond form input {
+        width: 100%;
+        float: left;
+        border-top: none;
+        width: 100%;
+        float: left;
+        border-top: none;
+        border-right: none;
+        border-left: none;
+        border-bottom: 1px solid #9f9f9f;
+        color: #9f9f9f;
+        font-size: 15px;
+        -moz-border-radius: 0;
+        -webkit-border-radius: 0;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .comment-respond textarea{
+        margin-top: 25px;
+        padding-top: 15px;
+        padding-left: 15px;
+    }
+
+    .comment-respond form .form-submit {
+        text-align: right;
+        margin-top: 30px;
+        width: 100%;
+        float: left;
+    }
+
+    .comment-respond form .form-submit input {
+        padding: 23px 60px;
+        width: auto;
+        font-size: 16px;
+        color: #ffffff;
+        display: block;
+        float: right;
+        text-shadow: none !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    .comment-respond form .form-submit input[type="submit"] {
+        background: #f5ab35;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-bottom: 4px solid #e19721;
+        border-radius: 5px;
+        color: #fff;
+        cursor: pointer;
+    }
+
+
+    /* Footer Styling */
+    .footer {
+        background: linear-gradient(to right, rgb(15,78,163) 50%, #054499 50%); /* Left side matches .bg-logo-footer, right side matches .footer-menu */
+        color: #ffffff;
+        padding: 30px 0;
+        font-family: "Montserrat", sans-serif;
+    }
+
+    .footer .footer-top {
+        padding-bottom: 20px;
+        border-bottom: 1px solid #cccccc; /* Light border for separation */
+    }
+
+    .footer .bg-logo-footer {
+        background: #003a8f;
+        padding: 15px; /* Adjust padding as needed */
+        height: 150px; /* Set a fixed height if needed */
+        display: flex;
+        align-items: center; /* Center the logo vertically */
+        margin-top: -30px;
+    }
+
+
+
+    .footer h4 {
+        font-size: 1.2rem;
+        color: #ffffff;
+        font-weight: 500;
+        margin-bottom: 15px;
+    }
+
+    .footer ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .footer ul li {
+        margin-bottom: 8px;
+    }
+
+    .footer ul li a {
+        color: #ffffff;
+        text-decoration: none;
+        font-weight: 300;
+        color: #a6b5d4;
+        font-size: 0.9rem;
+    }
+
+    .footer ul li a:hover {
+        color: #f4a261; /* Highlight color on hover */
+    }
+
+    .footer .col-md-9 {
+        margin-top: -30px;
+        background: #054499;
+    }
+
+    .footer-bottom {
+        background-color: #002f6c;
+        padding: 15px 0;
+        max-width: 100%;
+        margin-top: -21.5px;
+        margin-bottom: -30px; 
+    }
+
+    .footer-bottom p {
+        margin: 0;
+        color: #ffffff;
+    }
+
+
+    .footer-menu {
+        background: #054499;
+        width: 100%;
+    }
+
+    .footer-menu .col-md-4 {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    
+
+
