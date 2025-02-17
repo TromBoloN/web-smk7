@@ -10,76 +10,78 @@ class GuruController extends Controller
 {
     public function index()
     {
-        $gurus = Guru::all();
-        return view('pages.guru.index', compact('gurus'));
+        $teachers = Guru::all();
+        return view('dashboard.teacher.index', compact('teachers'));
     }
 
     public function create()
     {
-        return view('pages.guru.create');
+        return view('dashboard.teacher.create');
     }
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validate = $request->validate([
             'nama' => 'required|string|max:255',
             'mapel' => 'required|string|max:255',
             'foto' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:20480',
         ]);
 
-        $path = $request->file('foto')->store('images', 'public');
+        if ($request->hasFile('foto')) {
+            $validate['foto'] = $request->file('foto')->store('images/teachers', 'public');
+        }
 
-        Guru::create([
-            'nama' => $request->nama,
-            'mapel' => $request->mapel,
-            'foto' => $path,
-        ]);
+        Guru::create(
+            $validate
+        );
 
-        return redirect()->route('guru.index')->with('success', 'Guru added successfully.');
+        return redirect('admin/teachers')->with('success', 'Guru added successfully.');
     }
 
-    public function edit(Guru $guru)
+    public function edit($id)
     {
-        return view('pages.guru.edit', compact('guru'));
+        $teacher = Guru::findOrFail($id);
+        return view('dashboard.teacher.create', compact('teacher'));
     }
 
-    public function update(Request $request, Guru $guru)
+    public function update(Request $request, $id)
     {
-        $request->validate([
+        $validate = $request->validate([
             'nama' => 'required|string|max:255',
             'mapel' => 'required|string|max:255',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
 
+        $teacher = Guru::findOrFail($id);
+
         if ($request->hasFile('foto')) {
-            if ($guru->foto && Storage::disk('public')->exists($guru->foto)) {
-                Storage::disk('public')->delete($guru->foto);
+            if ($teacher->foto) {
+                Storage::disk('public')->delete($teacher->foto);
             }
 
-            $path = $request->file('foto')->store('images', 'public');
-            $guru->foto = $path;
+            $validate['foto'] = $request->file('foto')->store('thumbnails', 'public');
         }
 
-        $guru->nama = $request->nama;
-        $guru->mapel = $request->mapel;
-        $guru->save();
-
-        return redirect()->route('guru.index')->with('success', 'Guru updated successfully.');
+        $teacher->update($validate);
+        return redirect('admin/teachers')->with('success', 'Guru updated successfully.');
     }
 
-    public function destroy(Guru $guru)
+    public function destroy($id)
     {
+        $guru = Guru::findOrFail($id);
+
         if ($guru->foto) {
             Storage::disk('public')->delete($guru->foto);
         }
+
         $guru->delete();
 
-        return redirect()->route('guru.index')->with('success', 'Guru deleted successfully.');
+        return redirect()->back()->with('success', 'Guru deleted successfully.');
     }
 
     public function showTeachers()
     {
         $gurus = Guru::all();
-        return view('pages.teachers', compact('gurus'));
+        return view('dashboard.teacher.public_index', compact('gurus'));
     }
 }

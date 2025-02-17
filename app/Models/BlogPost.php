@@ -13,23 +13,15 @@ class BlogPost extends Model
     use HasFactory;
 
     protected $table = 'blog_post';
-    protected $primaryKey = 'post_id';
-    public $incrementing = true;
-    protected $keyType = 'int';
 
-    protected $fillable = [
-        'title',
-        'content',
-        'published_at',
-        'user_id',
-        'category',
-        'thumbnail',
+    protected $guarded = [
+        'id'
     ];
 
     // Relationship with User (assuming you have a User model)
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id', 'user_id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     protected static function boot()
@@ -37,11 +29,15 @@ class BlogPost extends Model
         parent::boot();
 
         static::creating(function ($post) {
-            $post->slug = Str::slug($post->title); // Generate the slug from the title
+            $slug = Str::slug($post->title);
+            $timestamp = now()->format('YmdHis');
+            $post->slug = "{$slug}-{$timestamp}";
         });
 
         static::updating(function ($post) {
-            $post->slug = Str::slug($post->title); // Update slug if title changes
+            $slug = Str::slug($post->title);
+            $timestamp = now()->format('YmdHis');
+            $post->slug = "{$slug}-{$timestamp}";
         });
     }
 }

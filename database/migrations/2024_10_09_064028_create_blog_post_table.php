@@ -12,14 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('blog_post', function (Blueprint $table) {
-            $table->id('post_id');
+            $table->id('id');
             $table->string('title');
             $table->text('content');
             $table->timestamp('published_at')->nullable();
-            $table->unsignedBigInteger('user_id'); // Define user_id as a foreign key
-            $table->foreign('user_id')->references('user_id')->on('user')->onDelete('cascade'); // Explicit foreign key
+
+            $table->unsignedBigInteger('user_id')->nullable(); // Define user_id as a foreign key
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade'); // Explicit foreign key
+
             $table->enum('category', ['Berita Umum', 'Tak Berkategori']);
             $table->string('thumbnail')->nullable();
+
             $table->timestamps();
         });
     }

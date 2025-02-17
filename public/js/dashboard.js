@@ -48,7 +48,6 @@ document.addEventListener("DOMContentLoaded", function() {
     window.addEventListener("scroll", checkScroll);
 });
 
-
 function openModal(modalId, imageSrc = null, captionText = null) {
     const modal = document.getElementById(modalId);
     modal.style.display = 'block';
@@ -60,19 +59,6 @@ function openModal(modalId, imageSrc = null, captionText = null) {
 
     document.body.classList.add('with-modal-open'); // Prevent background scrolling
 }
-
-document.querySelectorAll('.nav a').forEach(link => {
-    link.addEventListener('click', function (event) {
-        // Remove active class from all nav items and tab panes
-        document.querySelectorAll('.nav li, .tab-pane').forEach(el => el.classList.remove('active'));
-
-        // Add active class to the clicked nav item and its associated tab pane
-        link.parentElement.classList.add('active');
-        const targetPane = document.querySelector(link.getAttribute('href'));
-        targetPane.classList.add('active');
-    });
-});
-
 
 // Function to open the modal
 function openModal(modalId) {
