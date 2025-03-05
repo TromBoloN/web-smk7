@@ -16,7 +16,7 @@
         <div class="form-child">
             <label for="foto" class="block text-gray-700">Thumbnail</label>
 
-            <div class="form-image-upload-container">
+            <div class="form-image-upload-container a-16-9">
                 <img  
                     src='{{ isset($post->thumbnail) ? asset("storage/$post->thumbnail") : ''}}' class="form-image-preview"
                     style="{{isset($post->thumbnail) ? 'display: block' : ''}}"
@@ -40,6 +40,9 @@
         <div class="form-child">
             <label for="nama" class="">Title</label>
             <input type="text" name="title" required class="w-full p-2 border rounded" value="{{$post->title ?? ''}}">
+            @error('title')
+                <div class="error">{{$message}}</div>
+            @enderror
         </div>
 
         @php
@@ -66,6 +69,19 @@
                 @endforeach
             </select>
         </div>
+
+        <div class="form-child frow">
+            
+            <label for="is_editors_choice" class="">
+                <span>Editor's Choice</span>
+                <input  @isset($post->is_editors_choice) {{$post->is_editors_choice == 1 ? 'checked' : ''}} @endisset  name="is_editors_choice" id="is_editors_choice" type="checkbox" placeholder="Editor's Choice" class="w-full p-2 border rounded" value="1">
+                <span class="check"><i class="fa-solid fa-check"></i></span>
+            </label>
+
+        </div>
+        @error('editors_choice')
+            <div class="error">{{$message}}</div>
+        @enderror
 
         <div class="form-child">
             <label for="mapel" class="block text-gray-700">Content</label>

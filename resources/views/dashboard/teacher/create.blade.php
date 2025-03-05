@@ -17,7 +17,7 @@
         <div class="form-child">
             <label for="foto" class="block text-gray-700">Photo</label>
 
-            <div class="form-image-upload-container">
+            <div class="form-image-upload-container a-4-3">
                 <img  
                     src='{{ isset($teacher->foto) ? asset("storage/$teacher->foto") : ''}}' class="form-image-preview"
                     style="{{isset($teacher->foto) ? 'display: block' : ''}}"
@@ -28,7 +28,7 @@
                     
                     <section class="fcol">
                         <h5>Drop your image here, or browse</h2>
-                        <h6>Supports : JPEG, PNG</h6>
+                        <h6>Req : Transparent BG, 4:3, PNG, JPG</h6>
                     </section>
 
                 </section>

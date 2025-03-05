@@ -4,6 +4,7 @@
 
 namespace App\Models;
 
+use App\Traits\Filter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -11,6 +12,9 @@ use Illuminate\Support\Str;
 class BlogPost extends Model
 {
     use HasFactory;
+    use Filter;
+
+    protected $searchQuery = ['title', 'category', 'is_editors_choice'];
 
     protected $table = 'blog_post';
 

@@ -9,14 +9,9 @@
 }
 
 .dashboard-header{
-    width: 100%;
-    position: absolute;
-    top: 0;
+    background-color: var(--bg-300) !important;
     left: 0;
-    padding: 20px;
-    background-color: white;
 
-    height: var(--height);
 
     display: none;
 }
@@ -26,7 +21,7 @@
     flex-direction: column;
     min-height: 100vh !important;
     min-width: 250px !important;
-    background-color: var(--primary-color);
+    background-color: var(--bg-300);
     justify-content: space-between;
 
     & .logout-side{
@@ -99,7 +94,8 @@
     cursor: pointer;
     border-radius: 10px;
     text-decoration: none;
-    color: black;
+    color: var(--black-100);
+
 
     & i{
         font-size: 1.3rem;
@@ -124,6 +120,17 @@
 
 .table-scroll{
     overflow: auto;
+
+    &::-webkit-scrollbar{
+        background-color: transparent;
+        width: 10px;
+        height: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb{
+        border-radius: 10px;
+        background-color: var(--black-500);
+    }
 }
 
 .data-table{
@@ -132,12 +139,14 @@
     position: relative;
 
 
+
+
     & .menu-abs{
         position: absolute;
     }
 
     & tr:nth-child(1){
-        background: var(--tr-th);
+        background: var(--bg-600);
 
         & th{
             padding: 20px 20px;
@@ -149,11 +158,11 @@
     }
 
     & tr{
-        td {
+        & td {
             padding: 10px 10px;
             font-size: 1rem;
             font-weight: 500;
-            text-wrap: nowrap;
+            min-width: var(--force-width) !important;
 
             & img{
                 width: 100px;
@@ -166,11 +175,11 @@
     }
 
     & tr:nth-child(even){
-            background: var(--tr-td-even) !important;
+            background: var(--bg-600) !important;
     }
 
     & tr:nth-child(odd){
-        background: var(--tr-td-odd);
+        background: var(--bg-700);
     }
 }
 
@@ -182,7 +191,7 @@
     position: fixed;
     top: 0;
     right: 0;
-    background-color: var(--primary-color);
+    background-color: var(--bg-500);
     display: none;
     flex-direction: column;
     width: fit-content;
@@ -200,7 +209,7 @@
             color: var(--secondary-color);
 
             &:hover{
-                background-color: var(--primary-body-bg);
+                background-color: var(--bg-300);
             }
 
 
@@ -210,20 +219,7 @@
 
 @media only screen and (max-width: 768px) {
     .dashboard-side{
-        position: absolute;
-        left: -100%;
-        z-index: 4;
-        top: 0;
-
-        transition: left 0.3s ease-in-out;
-
-        &.open{
-            left: 0 !important;
-
-            transition: left 0.3s ease-in-out;
-
-        }
-
+        display: none;
     }
 
     .dashboard-header{
@@ -231,6 +227,7 @@
     }
 
     .dashboard-main{
+        padding: 30px 20px;
         margin-top:  var(--height);
     }
 }

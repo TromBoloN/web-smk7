@@ -73,10 +73,11 @@
 <nav class="main-navigation @if(!request()->is('/') ) contrast @endif ">
     <a href="/" class="navbar-logo">
         <img width="190" src="{{ asset('images/Logo_SMKN7.png') }}" alt="Logo SMKN7">
-    </a>
+</a>
     <div class="sidebar-button">
         <i class="fa fa-bars"></i>
     </div>
+    
     <ul class="navbar-list">
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
@@ -142,7 +143,7 @@
     <div class="modal-content">
         <span class="close" onclick="closeModal('searchModal')">&times;</span>
         <h3>Search Blog Posts</h3>
-        <form action="{{ route('blog.search') }}" method="GET">
+        <form action="{{url('blogs/search')}}" method="GET">
             <textarea name="query" class="form-control" placeholder="Type your search query here..." rows="4"></textarea>
             <button type="submit" class="btn btn-primary mt-3">Search</button>
         </form>

@@ -1,55 +1,145 @@
+
+.head-teacher{
+    margin-top: var(--spacing-top-nav);
+    font-size: 2.5rem;
+    padding: 10px 80px;
+    width: 100%;
+    text-align: center;
+    color: var(--primary-bg);
+    font-weight: 600;
+    position: relative;
+
+    &::after{
+        content: '';
+        height: 5px;
+        width: 10%;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        background-color: var(--primary-bg);
+        transform: translateX(-50%);
+    }
+}
+
 .teachers-list{
+    margin-top: 30px;
     display: flex;
     flex-wrap: wrap;
-    padding: 10px 25px;
+    padding: 10px 80px;
+    gap: 80px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 100px;
 
     & .teacher-container{
-        aspect-ratio: 16/9;
-        width: min(400px, 100%);
+        aspect-ratio: 3/4;
+        width: min(250px, 100%);
         height: auto;
         position: relative;
 
-        & .teacher-photo{
-            width: 100%;
+        transform: scale(1);
+        filter: grayscale(1);
+        transition: filter .3s linear, transform .1s linear;
+
+        &:hover{
+            transform: scale(1.05);
+            filter: grayscale(0);
+            transition: filter .3s linear, transform .1s linear;
+
+            & .background-teacher{
+                scale: 1;
+                transition: all .2s linear;
+            }
+        }
+
+        & .background-teacher{
             height: 100%;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+
+            z-index: 0;
+            scale: 0;
+            transition: all .2s linear;
 
             & img{
-                object-fit: cover;
                 width: 100%;
                 height: 100%;
             }
         }
 
-        & .teacher-info{
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 60%;
+        & .teacher-photo{
+            position: relative;
+            height: 100%;
+            z-index: 1;
 
-            & h5{
-                border-radius: 10px;
-                padding: 10px;
-                background-color: var(--secondary-bg-a);
-
-                border-bottom-right-radius: 0px ;
-                border-bottom-left-radius: 0px ;
-                color: white;
-                margin: 0;
-            }
-
-            & p{
-                border-radius: 10px;
-                border-top-right-radius: 0px ;
-                border-top-left-radius: 0px ;
- 
-                margin: 0;
-                background-color: var(--primary-bg);
-                color: white;
-                padding: 10px;
+            & img{
+                aspect-ratio: 3/4;
+                object-fit: contain;
+                height: 100%;
             }
         }
+
+        & .teacher-info{
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+
+            & .teacher-subject{
+                position: relative;
+                z-index: 2;
+                font-size: 0.8rem;
+    
+                margin-bottom: 0;
+    
+                background-color: var(--secondary-bg);
+                width: 100%;
+                border-radius: 10px;
+    
+                color: white;
+                padding: 15px;
+
+            }
+    
+            & h5{
+                position: relative;
+                z-index: 3;
+                border-radius: 10px;
+                font-size: 1rem;
+                font-weight: 600;
+                width: 70%;
+                padding: 10px;
+    
+                background-color: var(--primary-bg-a);
+    
+                color: var(--primary-color);
+    
+
+            }
+        }
+
+        & .disguise{
+            opacity: 0;
+            display: none;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .teachers-list{
+        padding: 10px 20px;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .teachers-list{
+        justify-content: center !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .head-teacher{
+        padding: 10px 20px;
     }
 }

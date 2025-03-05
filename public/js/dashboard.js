@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function animateCounters() {
         counters.forEach(counter => {
+            
+
             const target = parseInt(counter.innerText.replace(/,/g, ""));
             counter.innerText = 0;
 
@@ -15,12 +17,22 @@ document.addEventListener("DOMContentLoaded", function() {
             const updateCounter = () => {
                 currentStep++;
                 const current = Math.min(Math.ceil(currentStep * increment), target);
-                counter.innerText = current.toLocaleString();
+                
+                if(counter.dataset.noComma){
+                    counter.innerText = current; 
+                }else{
+                    counter.innerText = current.toLocaleString();
+                }
 
                 if (current < target) {
                     setTimeout(updateCounter, duration / steps);
                 } else {
-                    counter.innerText = target.toLocaleString(); 
+
+                    if(counter.dataset.noComma){
+                        counter.innerText = target; 
+                    }else{
+                        counter.innerText = target.toLocaleString(); 
+                    }
                 }
             };
 

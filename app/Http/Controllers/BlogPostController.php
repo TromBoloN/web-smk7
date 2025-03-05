@@ -14,36 +14,67 @@ class BlogPostController extends Controller
 
     public function public_Index()
     {
-        $posts = BlogPost::with('user')->latest()->paginate(10);
-        return view('dashboard.blog.public_index', compact('posts'));
+        $later = BlogPost::with('user')->latest()->take(5)->get(); // Get the absolute newest one
+        $editors_choice = BlogPost::with('user')->where('is_editors_choice', true)->take(3)->get(); // Get the absolute newest one
+        $related = null;
+        $first_related = null;
+        $other_related = null;
+        $post_category = BlogPost::all()->pluck('category')->unique();
+        
+        if($later->isNotEmpty()){
+            $related = BlogPost::with('user')
+            ->where('category', $later->first()->category) // Match category
+            ->where('id', '!=', $later->first()->id) // Exclude the latest post itself
+            ->take(4)
+            ->get();
+
+        $first_related = $related->shift();
+        $other_related = $related;
+        }
+        
+
+        return view('dashboard.blog.public_index', compact('later','post_category','first_related', 'other_related', 'editors_choice', 'related'));
+    }
+
+    public function category($category){
+        $posts = BlogPost::with('user')->where('category', $category)->latest()->paginate(6);
+        $post_category = BlogPost::all()->pluck('category')->unique();
+
+        if($posts->isEmpty()){
+            abort(404);
+        }
+        
+        return view('dashboard.blog.category_index', compact('posts','post_category', 'category'));
+
     }
 
     public function index()
     {
         $posts = BlogPost::with('user')->latest()->get();
-        info($posts);
-        return view('dashboard.blog.index', compact('posts'));
+        return view('dashboard.blog.index');
+    }
+
+    public function search(Request $request)
+    {
+
+        $query = $request->input('query');
+        $post_category = BlogPost::all()->pluck('category')->unique();
+
+        $posts = BlogPost::where('title', 'like', "%{$query}%")
+            ->orWhere('content', 'like', "%{$query}%")->paginate(6)->withQueryString();
+
+        return view('dashboard.blog.search', compact('posts','post_category', 'query'));
     }
 
     public function show($slug)
     {
         // Find the current post by slug
         $post = BlogPost::where('slug', $slug)->firstOrFail();
-
         $posts = BlogPost::where('id', '!=', $post->id)->latest()->take(5)->get();
+        $post_category = BlogPost::all()->pluck('category')->unique();
 
         // Pass both the current post and the recent posts to the view
-        return view('dashboard.blog.show', compact('post', 'posts'));
-    }
-
-    public function search(Request $request)
-    {
-        $query = $request->input('query');
-
-        $posts = BlogPost::where('title', 'like', "%{$query}%")
-            ->orWhere('content', 'like', "%{$query}%")->paginate(10);
-
-        return view('dashboard.blog.search', compact('posts', 'query'));
+        return view('dashboard.blog.show', compact('post', 'posts', 'post_category'));
     }
 
     public function create()
@@ -58,9 +89,14 @@ class BlogPostController extends Controller
             'title' => 'required|string|max:255',
             'content' => 'required|string',
             'user_id' => 'required|exists:users,id',
+            'is_editors_choice' => 'nullable|boolean',
             'category' => 'required|in:Berita Umum,Tak Berkategori',
             'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+
+        if(!$request->is_editors_choice){
+            $validated['is_editors_choice'] = false;
+        }
 
         if ($request->hasFile('thumbnail')) {
             $validate['thumbnail'] = $request->file('thumbnail')->store('thumbnails', 'public');
@@ -89,6 +125,14 @@ class BlogPostController extends Controller
             'category' => 'required|in:Berita Umum,Tak Berkategori',
             'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+
+        if(!$request->is_editors_choice){
+            $validated['is_editors_choice'] = false;
+        }else{
+            $validated['is_editors_choice'] = true;
+        }
+
+        info($validated);
 
         $post = BlogPost::findOrFail($id);
 

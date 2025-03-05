@@ -8,44 +8,17 @@
         <a href="{{url('admin/teachers/create')}}">Tambah</a>
     </section>
     
-    <section class="table-scroll">
-        <table class="data-table">
-            <tr>
-                <th>No.</th>
-            <th>Foto</th>
-                <th>Nama</th>
-                <th>Subject</th>
-                <th>Action</th>
-            </tr>
-            @php
-                $no = 1;
-            @endphp
-            @forelse ($teachers as $teacher)
-                <tr>
-                    <td>{{$no}}</td>
-                    <td><img src="{{ asset("storage/$teacher->foto")}}" alt=""></td>
-                    <td>{{$teacher->nama}}</td>
-                    <td>{{$teacher->mapel}}</td>
-                    <td><i class="fa-solid fa-ellipsis tabz-open" data-tabz-dropdown-open='{{$teacher->guru_id}}'></i></td>
-                </tr>
-                @php
-                    $no++;
-                @endphp
-            @empty
-                {{-- <tr><td>Not Found</td></tr> --}}
-            @endforelse
-        </table>
-    </section>
+    @livewire('admin-teacher')
 
-    <div class="tabz-dropdown-menu" data-tabz-dropdown-menu>
+    <div class="tabz-dropdown-menu"  id="dropdown_action">
                                 
         <div class="tabz-dropdown-item-contain">
-            <a class="tabz-dropdown-item" data-tabz-edit href="{{url("admin/teachers/0/edit")}}"> 
+            <a class="tabz-dropdown-item" data-tabz-action href="{{url("admin/teachers/0/edit")}}"> 
                 <i class="fa-solid fa-pencil"></i> <span>Edit</span>
             </a>
         </div>
 
-        <form class="tabz-dropdown-item-contain" data-tabz-del action="{{"/admin/teachers/0"}}" method="post"> @method('DELETE') @csrf
+        <form class="tabz-dropdown-item-contain" data-tabz-action action="{{"/admin/teachers/0"}}" method="post"> @method('DELETE') @csrf
             <button class="tabz-dropdown-item">
                 <i class="fa-solid fa-trash-can"></i> 
                 <span>Delete</span>

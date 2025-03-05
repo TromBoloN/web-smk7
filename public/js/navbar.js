@@ -23,7 +23,7 @@ window.addEventListener('scroll', scroll_check)
 function scroll_check(params) {
     let scrollVertical = window.scrollY
 
-    if (scrollVertical > 100) {
+    if (scrollVertical > 10) {
         nav.classList.remove('showed')
         nav.classList.add('scrolled')
         nav.removeAttribute('data-top-showed')

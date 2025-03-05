@@ -24,7 +24,8 @@ body {
     gap: 10px;
     margin-bottom: 40px;
 
-    & h3{
+    & h3, & h5{
+        color: var(--black-100);
         font-size: 1.4rem;
     }
 }
@@ -36,7 +37,7 @@ body {
 }
 
 .login-container {
-    background-color: #fff;
+    background-color: var(--bg-300);
     padding: 2rem;
     border-radius: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -65,13 +66,16 @@ body {
         outline: none;
         flex-grow: 1;
         height: 100%;
+        background-color: var(--bg-300);
+        color: var(--black-100);
     }
 
     & i{
         display: flex;
         align-items: center;
         justify-content: center;
-        color: black;
+        color: var(--black-100);
+
         height: 30px !important;
         aspect-ratio: 1/1;
     }

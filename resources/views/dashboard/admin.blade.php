@@ -17,6 +17,63 @@
 
 <body>
 
+    <nav class="main-side-navigation dashboard-side reverse">
+        <div class="close-side-nav" data-close-side>
+            <i class="fa-solid fa-times"></i>
+        </div>
+    
+        <section class="side-navbar-list">
+                            
+                <a class="dropdown-container" href="{{url('/')}}">
+                    <div class="frow jcsbetween" data-dropdown-nav-button>
+                        <div class="frow ga-3">
+                            <i class="fa-solid fa-home nav-symbol"></i>
+                            <h5>Home</h5>
+                        </div>
+                    </div>
+                </a>
+
+                <a class="dropdown-container" href="{{url('/admin/dashboard')}}">
+                    <div class="frow jcsbetween" data-dropdown-nav-button>
+                        <div class="frow ga-3">
+                            <i class="fa-solid fa-dashboard nav-symbol"></i>
+                            <h5>Dashboard</h5>
+                        </div>
+                    </div>
+                </a>
+
+                <a class="dropdown-container" href="{{url('/admin/teachers')}}">
+                    <div class="frow jcsbetween" data-dropdown-nav-button>
+                        <div class="frow ga-3">
+                            <i class="fa-solid fa-graduation-cap nav-symbol"></i>
+                            <h5>Guru</h5>
+                        </div>
+                    </div>
+                </a>
+
+                <a class="dropdown-container" href="{{url('/admin/blogs')}}">
+                    <div class="frow jcsbetween" data-dropdown-nav-button>
+                        <div class="frow ga-3">
+                            <i class="fa-solid fa-newspaper nav-symbol"></i>
+                            <h5>Blog</h5>
+                        </div>
+                    </div>
+                </a>
+
+                <form method='POST' action='{{url("/logout")}}' class="dropdown-container">
+                    @csrf
+                    <button  class="frow jcsbetween" data-dropdown-nav-button>
+                        <div class="frow ga-3">
+                            <i class="fa-solid fa-door-open nav-symbol"></i>
+                            <h5>Logout</h5>
+                        </div>
+                    </button>
+                </form>
+
+    
+        </section>
+    </nav>
+    
     <div class="dashboard-section">
 
         <nav class="dashboard-side ">
@@ -57,17 +114,23 @@
 
         <!-- Main Content -->
         <main class="dashboard-main">
-                <header class="dashboard-header">
+                <header class="dashboard-header main-navigation">
                     <div class="sidebar-button -dark">
                         <i class="fa fa-bars"></i>
                     </div>
+
+                    <div class="navbar-button-scroll dboard">
+                        <i class="fa-solid fa-caret-down"></i>
+                    </div>
                 </header>
+                
                 @yield('content')
         </main>
     </div>
 
     <script src="{{asset('js/sidebar.js')}}"></script>
     <script src="{{asset('js/tabz-dropdown.js')}}"></script>
+    <script src="{{asset('js/navbar.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

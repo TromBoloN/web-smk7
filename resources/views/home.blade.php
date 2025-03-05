@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
 
+    <link rel="stylesheet" href="{{asset('css/landing.css')}}">
     @include('imports.css')
 
 </head>
@@ -31,21 +32,21 @@
 
     <!-- Info Section -->
     <div class="info-section">
-        <div class="info-box box-1"
-            style="background-image: url(https://smkn7-smr.sch.id/wp-content/uploads/2022/06/student-activity-388x370.jpeg)">
-            <a href="/berita " class="info-link"></a>
+        <a href="/blogs" class="info-box box-1"
+            style="background-image: url({{asset('images/student-activity-388x370.jpeg')}})">
+            <div class="info-link"></div>
             <h2>INFO <span>PENTING</span></h2>
-        </div>
+        </a>
         <div class="info-box box-2"
-            style="background-image: url(https://smkn7-smr.sch.id/wp-content/uploads/2022/06/class-activity-388x370.jpeg)">
+            style="background-image: url({{asset('images/class-activity-388x370.jpeg')}}); ">
             <a href="#" class="info-link"></a>
             <h2>KEGIATAN <span>KELAS</span></h2>
         </div>
-        <div class="info-box box-3"
-            style="background-image: url(https://smkn7-smr.sch.id/wp-content/uploads/2022/06/teacher-profile-388x370.jpeg)">
-            <a href="/teachers" class="info-link"></a>
+        <a href="/teachers" class="info-box box-3"
+            style="background-image: url({{asset('/images/teacher-profile-388x370.jpeg')}}); ">
+            <div class="info-link"></div>
             <h2>PROFIL <span>GURU</span></h2>
-        </div>
+        </a>
     </div>
 
     <!-- Content Section -->
@@ -62,7 +63,7 @@
                 dan kreatif, dan Memacu perkembangan pendidikan yang lebih kompetitif dan mandiri.</p>
 
             <section class="fcol">
-                <img src="{{ asset('images/signature.png') }}" alt="Sambutan Kepala Sekolah">
+                <img class='welcome-signature' src="{{ asset('images/signature.png') }}" alt="Sambutan Kepala Sekolah">
                 <div class="sh-1">Anda Supanda, S.Pd., M.Pd.</div>
                 <div class='sh-2'>Kepala SMK Negeri 7 Samarinda</div>
             </section>
@@ -77,7 +78,7 @@
         <div class="welcome-text">
 
             <section class="fcol">
-                <img src="{{ asset('images/signature.png') }}" alt="Sambutan Kepala Sekolah">
+                <img class='welcome-signature' src="{{ asset('images/signature.png') }}" alt="Sambutan Kepala Sekolah">
                 <div class="sh-1">Anda Supanda, S.Pd., M.Pd.</div>
                 <div class='sh-2'>Kepala SMK Negeri 7 Samarinda</div>
             </section>
@@ -173,7 +174,7 @@
         <div class="achievements-section-content">
 
             <div class="fcol">
-                <h3 class="home-count">2,002</h3>
+                <h3 class="home-count" data-no-comma='true'>2002</h3>
                 <p>DIDIRIKAN</p>
             </div>
 
@@ -281,16 +282,14 @@
         <div class="content-video">
             <a class="play-youtube" data-featherlight="iframe"
                 href="https://www.youtube.com/embed/ed9ENfQ_Nag?autoplay=1">
-                <img src="{{asset('images/tumb-767x500.png')}}" alt="PROFIL KAMI">
+                <img src="{{ asset('images/tumb-767x500.png') }}" alt="PROFIL KAMI">
             </a>
         </div>
     </section>
 
     <section class="impressions">
 
-
-
-        <section class="fcol jccenter aicenter">
+        <section class="impression-quotes fcol jccenter aicenter">
             <h1>KESAN ALUMNI</h1>
             <div class="col-sm-12">
                 <div class="tab-content">
@@ -340,54 +339,66 @@
                 </div>
             </div>
         </section>
-
-        <div class="impression-nav-container" data-slider-holder>
-
+        <main class="impression-main-slider" data-sliderz-main data-counter-type="normal"
+            style="--height-slider: 400px; --width-slider: 100%;">
             <section class="slider-control">
                 <div data-slider_controller="left"> <i class="fa-solid fa-arrow-left"></i> </div>
                 <div data-slider_controller="right"> <i class="fa-solid fa-arrow-right"></i> </div>
-
             </section>
 
-            <ul class="nav" data-slider-track>
+            <div data-slider-holder>
+                <ul data-slider-track='normal'>
 
-                <li class="" data-tab="2" data-slider-item='first'>
-                    <section class="impression-image-contain"><img src="{{ asset('images/testi-1.jpeg') }}"
-                            alt="Jelita"></section>
-                    <strong>Jelita Islami Delina Putri</strong>
-                    <span>Siswa TJKT</span>
-                </li>
+                    <li class="" data-tab data-slider-item>
+                        <section class="impression-child-holder">
+                            <section class="impression-image-contain"><img src="{{ asset('images/testi-1.jpeg') }}"
+                                    alt="Jelita"></section>
+                            <strong>Jelita Islami Delina Putri</strong>
+                            <span>Siswa TJKT</span>
+                        </section>
+                    </li>
 
-                <li class="active" data-tab="1" data-slider-item>
-                    <section class="impression-image-contain"><img src="{{ asset('images/testi-2.jpeg') }}"
-                            alt="Ridho"></section>
-                    <strong>Ridho Morita</strong>
-                    <span>Siswa TJKT</span>
-                </li>
+                    <li class="" data-tab data-slider-item>
+                        <section class="impression-child-holder">
+                            <section class="impression-image-contain"><img src="{{ asset('images/testi-2.jpeg') }}"
+                                    alt="Ridho"></section>
+                            <strong>Ridho Morita</strong>
+                            <span>Siswa TJKT</span>
+                        </section>
+                    </li>
 
-                <li class="" data-tab="0" data-slider-item>
-                    <section class="impression-image-contain"><img src="{{ asset('images/testi-3.jpg') }}"
-                            alt="Rey"></section>
-                    <strong>Rey Azhar Satriaji</strong>
-                    <span>Siswa TJKT</span>
-                </li>
+                    <li class="active" data-tab data-slider-item>
+                        <section class="impression-child-holder">
+                            <section class="impression-image-contain"><img src="{{ asset('images/testi-3.jpg') }}"
+                                    alt="Rey"></section>
+                            <strong>Rey Azhar Satriaji</strong>
+                            <span>Siswa TJKT</span>
+                        </section>
+                    </li>
 
-                <li class="" data-tab="-1" data-slider-item>
-                    <section class="impression-image-contain"><img src="{{ asset('images/testi-4.jpeg') }}"
-                            alt="Ahmad"></section>
-                    <strong>Ahmad Ribbiy Aldi</strong>
-                    <span>Siswa PPLG</span>
-                </li>
+                    <li class="" data-tab data-slider-item>
+                        <section class="impression-child-holder">
+                            <section class="impression-image-contain"><img src="{{ asset('images/testi-4.jpeg') }}"
+                                    alt="Ahmad"></section>
+                            <strong>Ahmad Ribbiy Aldi</strong>
+                            <span>Siswa PPLG</span>
+                        </section>
+                    </li>
 
-                <li class="" data-tab="-2" data-slider-item='last'>
-                    <section class="impression-image-contain"><img src="{{ asset('images/testi-5.jpeg') }}"
-                            alt="Ananda"></section>
-                    <strong>Ananda DWI</strong>
-                    <span>Siswa DKV</span>
-                </li>
-            </ul>
+                    <li class="" data-tab data-slider-item>
+                        <section class="impression-child-holder">
+                            <section class="impression-image-contain"><img src="{{ asset('images/testi-5.jpeg') }}"
+                                    alt="Ananda"></section>
+                            <strong>Ananda DWI</strong>
+                            <span>Siswa DKV</span>
+                        </section>
+                    </li>
+                </ul>
 
-        </div>
+            </div>
+            <div class="sliderz-indicator" style="--offset-indicator: -40px" data-sliderz-indicator>
+            </div>
+        </main>
     </section>
 
     <section class="page-sponsor">
@@ -409,6 +420,7 @@
     <script src="{{ asset('js/sidebar.js') }}"></script>
     <script src="{{ asset('js/navbar.js') }}"></script>
     <script src="{{ asset('js/slider.js') }}"></script>
+
 </body>
 
 </html>

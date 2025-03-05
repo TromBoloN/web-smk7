@@ -14,10 +14,11 @@ use App\Http\Controllers\CommentController;
 Route::get('/', [ViewController::class, 'home']);
 
 // Blog Public Routes
-Route::get('/berita', [BlogPostController::class, 'public_Index'])->name('berita.index');
-Route::get('/blogs/{slug}', [BlogPostController::class, 'show'])->name('berita.show');
+Route::get('/blogs', [BlogPostController::class, 'public_Index'])->name('berita.index');
+Route::get('/blogs/detail/{slug}', [BlogPostController::class, 'show'])->name('berita.show');
+Route::get('/blogs/category/{category}', [BlogPostController::class, 'category']);
+Route::get('/blogs/search', [BlogPostController::class, 'search']);
 Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
-Route::get('/search', [BlogPostController::class, 'search'])->name('blog.search');
 
 // Teacher's Public Routes
 Route::get('/teachers', [GuruController::class, 'showTeachers'])->name('teachers.list');
