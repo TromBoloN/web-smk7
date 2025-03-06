@@ -82,6 +82,6 @@ class GuruController extends Controller
     public function showTeachers()
     {
         $gurus = Guru::all();
-        return view('dashboard.teacher.public_index', compact('gurus'));
+        return view('public.teacher.public_index', compact('gurus'));
     }
 }

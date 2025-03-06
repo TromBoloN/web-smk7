@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
-    <link rel="stylesheet" href="{{ asset('fonts/css/fontawesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('fonts/css/brands.min.css') }}">
+    
+    <link rel="stylesheet" href="{{ asset('css/auth.css') }}">
+    @include('imports.css')
     <title>Login</title>
 </head>
 <body>

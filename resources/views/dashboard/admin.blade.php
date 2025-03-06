@@ -79,10 +79,10 @@
         <nav class="dashboard-side ">
             <section class="fcol ga-3">
 
-                <section class="dashboard-logo  g-1">
+                <a href="{{url('/')}}" class="dashboard-logo  g-1">
                     <img src="{{ asset('images/smk7-no-bg-logo.png') }}" alt="" width="40">
                     <h5>| SMKN 7</h5>
-                </section>
+                </a>
 
                 <section class="dashboard-item-container">
                 

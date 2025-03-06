@@ -118,6 +118,7 @@ text-overflow: ellipsis;
 
         & .blog-head {
             text-transform: uppercase;
+            font-size: 1.4rem !important;
         }
 
         & .blog-information {
@@ -131,7 +132,12 @@ text-overflow: ellipsis;
             & div {
                 display: flex;
                 gap: 10px;
+                font-size: 0.8rem !important;
             }
+        }
+
+        & .blog-content{
+            font-size: 0.8rem !important;
         }
 
     }
@@ -455,9 +461,7 @@ text-overflow: ellipsis;
         padding: 0 50px;
     }
 
-   :root{
-    --spacing-top-nav: 80px;
-   }
+
 
     .main-catalog-blog {
         padding: 10px 30px !important;
@@ -522,7 +526,8 @@ text-overflow: ellipsis;
     }
 
     .categorical-other-catalaog{
-        grid-template-rows: repeat(auto-fit, minmax(1fr, 1fr)) !important;
+        display: flex !important;
+        flex-direction: column;
     }
 
     .tab-section{
@@ -532,6 +537,10 @@ text-overflow: ellipsis;
 }
 
 @media only screen and (max-width: 550px) {
+    :root{
+        --spacing-top-nav: 100px;
+       }
+
     .main-catalog-blog {
         padding: 10px 30px !important;
     }

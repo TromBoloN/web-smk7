@@ -42,7 +42,10 @@
         </div>
     @endif
 
-    <div class="mb-extra d-flex justify-content-center mt-4">
-        {{ $teachers->links() }}
-    </div>
+    @if ($teachers->count() > 0)
+        <div class="mb-extra d-flex justify-content-center mt-4">
+            {{ $teachers->links() }}
+        </div>
+    @endif
+
 </div>

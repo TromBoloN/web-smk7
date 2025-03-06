@@ -1,3 +1,4 @@
+// COUNTER ACHIEVEMENTS FUNCTION
 document.addEventListener("DOMContentLoaded", function() {
     const counters = document.querySelectorAll(".home-count");
     let started = false;
@@ -60,27 +61,49 @@ document.addEventListener("DOMContentLoaded", function() {
     window.addEventListener("scroll", checkScroll);
 });
 
-function openModal(modalId, imageSrc = null, captionText = null) {
-    const modal = document.getElementById(modalId);
-    modal.style.display = 'block';
+// MODAL FUNCION
+let image_target = document.querySelectorAll("[data-image-modal]");
+let backdrop = document.querySelector("[data-dark-backdrop]");
+let gallery_modal = document.querySelector("[data-gallery-modal]");
+let close_modal = gallery_modal.querySelector("[data-close-side]");
 
-    if (imageSrc && captionText) {
-        document.getElementById("modal-image").src = imageSrc;
-        document.getElementById("modal-caption").textContent = captionText;
+image_target.forEach((element) => {
+    element.addEventListener("click", openModal);
+});
+
+close_modal.addEventListener("click", closeModal)
+backdrop.addEventListener("click", closeModal)
+
+function openModal(e) {
+    
+    let target = e.target.closest('[data-image-modal]')
+    let caption = target.getAttribute('data-image-modal');
+    let image_modal = gallery_modal.querySelector('.image-modal');
+    let img = target.querySelector('img')
+    let src = img.getAttribute('src');
+
+    backdrop.classList.add('active');
+        gallery_modal.style.display = 'flex';
+
+    setTimeout(() => {
+        gallery_modal.classList.add('active');
+    }, 0);
+
+    if (src && caption) {
+        image_modal.src = src;
+        gallery_modal.querySelector("[data-modal-caption]").textContent = caption;
     }
 
-    document.body.classList.add('with-modal-open'); // Prevent background scrolling
 }
 
-// Function to open the modal
-function openModal(modalId) {
-    const modal = document.getElementById(modalId);
-    document.body.classList.add('with-modal-open'); 
-    modal.style.display = 'block';
-}
+function closeModal() {
+    backdrop.classList.remove('active');
 
-function closeModal(modalId) {
-    const modal = document.getElementById(modalId);
-    document.body.classList.remove('with-modal-open');
-    modal.style.display = 'none';
+    gallery_modal.classList.remove('active');
+
+    setTimeout(() => {
+        gallery_modal.style.display = 'none';
+    }, 100);
+
+
 }

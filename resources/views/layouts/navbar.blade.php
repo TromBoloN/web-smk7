@@ -4,7 +4,7 @@
     </div>
 
     <section class="side-navbar-list">
-        
+
         <div class="dropdown-container">
             <div class="frow jcsbetween" data-dropdown-nav-button>
                 <div class="frow ga-3">
@@ -15,8 +15,14 @@
             </div>
 
             <div class="dropdown-content">
-                    <h5>Profil A</h5>
-                    <h5>Profil B</h5>
+                <h5>Sejarah Singkat</h5>
+                <h5>Sejarah Pengembangan</h5>
+                <h5>Visi dan Misi</h5>
+                <h5>Program Keahlian</h5>
+                <h5>Konsentrasi Keahlian</h5>
+                <h5>Karakteristik Program</h5>
+                <h5>Profil Pimpinan</h5>
+                <h5>Sarana Prasarana</h5>
             </div>
         </div>
 
@@ -30,7 +36,15 @@
             </div>
 
             <div class="dropdown-content">
-                <h5>Profil A</h5>
+                <h5 class="dropdown-item" href="/about-us/program-kerja">PROGRAM KERJA</h5>
+                <h5 class="dropdown-item" href="/about-us/peraturan=kemdikbud">PERATURAN KEMDIKBUD</h5>
+                <h5 class="dropdown-item" href="/about-us/hubungan-industri">HUBUNGAN INDUSTRI</h5>
+                <h5 class="dropdown-item" href="/about-us/teaching-factory-dan-program-inovasi">TEACHING FACTORY DAN PROGRAM INOVASI</h5>
+                <h5 class="dropdown-item" href="/about-us/program-bussiness-center-unit-produksi">PROGRAM BUSINESS
+                    CENTER (UNIT PRODUKSI)</h5>
+                <h5 class="dropdown-item" href="/about-us/program-pengembangan-sekolah">PROGRAM PENGEMBANGAN
+                    SEKOLAH</h5>
+                <h5 class="dropdown-item" href="/about-us/program-spw">PROGRAM SPW</h5>
             </div>
         </div>
 
@@ -67,25 +81,31 @@
     </section>
 </nav>
 
-<div class="darkness-backdrop">
-</div>
 
-<nav class="main-navigation @if(!request()->is('/') ) contrast @endif ">
+
+<nav class="main-navigation @if (!request()->is('/')) contrast @endif ">
     <a href="/" class="navbar-logo">
         <img width="190" src="{{ asset('images/Logo_SMKN7.png') }}" alt="Logo SMKN7">
-</a>
+    </a>
     <div class="sidebar-button">
         <i class="fa fa-bars"></i>
     </div>
-    
+
     <ul class="navbar-list">
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
                 Profil
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a href="#" class="dropdown-item">Profil A</a></li>
+                <li><a href="#" class="dropdown-item">Sejarah Singkat</a></li>
+                <li><a href="#" class="dropdown-item">Sejarah Pengembangan</a></li>
+                <li><a href="#" class="dropdown-item">Visi dan Misi</a></li>
+                <li><a href="#" class="dropdown-item">Program Keahlian</a></li>
+                <li><a href="#" class="dropdown-item">Konsentrasi Keahlian</a></li>
+                <li><a href="#" class="dropdown-item">Karakteristik Program</a></li>
+                <li><a href="#" class="dropdown-item">Profil Pimpinan</a></li>
+                <li><a href="#" class="dropdown-item">Sarana Prasarana</a></li>
             </ul>
         </li>
         <li class="nav-item dropdown">
@@ -126,7 +146,7 @@
             <a href="/" class="nav-link">Kontak Kami</a>
         </li>
         <li class="nav-item" style='height: fit-content;'>
-            <a href="#" class="search-nav" onclick="openModal('searchModal'); return false;">
+            <a href="#" class="search-nav" data-search-modal-opener>
                 <i class="fa fa-search" aria-hidden="true"></i>
             </a>
         </li>
@@ -137,15 +157,24 @@
     </div>
 </nav>
 
-
-
-<div id="searchModal" class="search-modal" style="display: none;">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal('searchModal')">&times;</span>
-        <h3>Search Blog Posts</h3>
-        <form action="{{url('blogs/search')}}" method="GET">
-            <textarea name="query" class="form-control" placeholder="Type your search query here..." rows="4"></textarea>
-            <button type="submit" class="btn btn-primary mt-3">Search</button>
-        </form>
+<section data-nav-additional>
+    <div class="darkness-backdrop-100">
     </div>
-</div>
+
+    <div class="fcol g-2 aifend jcfend search-modal" data-search-modal>
+        <div class="close-button offsite" data-close-side style="--size-close:30px">
+            <i class="fa-solid fa-times"></i>
+        </div>
+
+        <form class="search-container mb-5 w-100" action="{{ url('blogs/search') }}" method="GET">
+            <input name="query" type="text" placeholder='New Search'>
+
+            <button>
+                <i class="fa-solid fa-search"></i>
+            </button>
+        </form>
+
+
+
+    </div>
+</section>

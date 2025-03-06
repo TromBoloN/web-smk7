@@ -33,7 +33,7 @@ class BlogPostController extends Controller
         }
         
 
-        return view('dashboard.blog.public_index', compact('later','post_category','first_related', 'other_related', 'editors_choice', 'related'));
+        return view('public.blog.public_index', compact('later','post_category','first_related', 'other_related', 'editors_choice', 'related'));
     }
 
     public function category($category){
@@ -44,7 +44,7 @@ class BlogPostController extends Controller
             abort(404);
         }
         
-        return view('dashboard.blog.category_index', compact('posts','post_category', 'category'));
+        return view('public.blog.category_index', compact('posts','post_category', 'category'));
 
     }
 
@@ -63,7 +63,7 @@ class BlogPostController extends Controller
         $posts = BlogPost::where('title', 'like', "%{$query}%")
             ->orWhere('content', 'like', "%{$query}%")->paginate(6)->withQueryString();
 
-        return view('dashboard.blog.search', compact('posts','post_category', 'query'));
+        return view('public.blog.search', compact('posts','post_category', 'query'));
     }
 
     public function show($slug)
@@ -74,7 +74,7 @@ class BlogPostController extends Controller
         $post_category = BlogPost::all()->pluck('category')->unique();
 
         // Pass both the current post and the recent posts to the view
-        return view('dashboard.blog.show', compact('post', 'posts', 'post_category'));
+        return view('public.blog.show', compact('post', 'posts', 'post_category'));
     }
 
     public function create()

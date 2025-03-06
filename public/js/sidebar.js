@@ -29,6 +29,5 @@ dropdown_button.forEach( el => {
             sibling.style.maxHeight = h +'px'
         }
         
-    
     })
 })

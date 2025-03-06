@@ -51,9 +51,13 @@
 
     @endif
 
-    <div class="mb-extra d-flex justify-content-center mt-4">
-        {{ $posts->links() }}
-    </div>
+
+    @if ($posts->count() > 0)
+        <div class="mb-extra d-flex justify-content-center mt-4">
+            {{ $posts->links() }}
+        </div>
+    @endif
+
 </div>
 
 

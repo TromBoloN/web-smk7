@@ -234,7 +234,7 @@
     margin-top: var(--spacing-section);
 
     @media (prefers-color-scheme: dark) {
-        & .welcome-signature{
+        & .welcome-signature {
             filter: invert(100%) brightness(200%);
         }
     }
@@ -253,14 +253,14 @@
     flex-grow: 1;
 
     @media (prefers-color-scheme: dark) {
-        & .welcome-signature{
+        & .welcome-signature {
             filter: invert(100%) brightness(200%);
         }
     }
 
     & img {
         width: 245px;
-        
+
         height: auto;
     }
 
@@ -311,7 +311,7 @@
 .faith-section-header {
     text-align: center;
 
-    & p{
+    & p {
         width: min(600px, 100%);
     }
 }
@@ -349,11 +349,10 @@
     background: rgba(15, 78, 163, 0.9);
     padding: 25px 45px;
     position: relative;
-    margin: 0 15px;
     display: flex;
     align-items: center;
-    margin-top: var(--spacing-section);
     gap: 30px;
+    margin: var(--spacing-section) 100px;
 
     &:before {
         content: "";
@@ -387,10 +386,10 @@
         color: white;
         text-decoration: none;
         height: fit-content;
+        transition: all 0.2s ease-in-out;
 
         &:hover {
             transform: scale(0.82);
-            transition: all 0.2s ease-in-out;
         }
     }
 }
@@ -402,8 +401,7 @@
     text-align: justify;
     text-align-last: center;
     width: 100%;
-    margin-top: var(--spacing-section);
-    padding: 0 100px;
+    padding: var(--spacing-section) 100px;
 
     & h2 {
         text-align: center;
@@ -420,7 +418,7 @@
     background-size: cover;
     position: relative;
     padding: 50px 0;
-    margin-top: var(--spacing-section);
+    margin: var(--spacing-section) 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -580,129 +578,116 @@
 /* Featured Gallery Section */
 
 .featured-gallery {
-    margin-top: 140px;
-    margin-bottom: 120px;
-}
-
-.large-image,
-.small-images {
-    padding: 0 !important;
-    /* Ensure no internal padding */
-    margin: 0 !important;
-    max-width: 100%;
-
-
-}
-
-.featured-gallery .row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0;
-    margin: 0;
-    padding: 0;
+    margin-top: var(--spacing-top-nav);
+    margin-bottom: var(--spacing-top-nav);
 }
 
 .large-image {
     flex: 0 0 50%;
-    /* Take up half the space */
-    margin: 0;
-    padding: 0;
     border: none;
-    float: left;
+    cursor: pointer;
+    border: 0px solid var(--primary-bg);
+    transition: border 0.3s linear;
+
+    &:hover{
+        border: 8px solid var(--primary-bg);
+    }
+
+    &:hover img {
+        transform: scale(0.95);
+        transition: transform 0.3s ease;
+    }
+
+    & img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+    }
 }
 
-.large-image img {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: cover;
-    /* Ensures images fill container without gaps */
+.grid-image {
+    flex: 0 0 50%;
 }
 
 .small-images {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    /* Two columns for smaller images */
-    gap: 0;
-    flex: 1;
-    margin: 0;
-    padding: 0;
-    border: none;
-    float: left;
+    display: flex;
+    height: 50%;
+    border: 0px solid var(--primary-bg);
+    transition: border 0.3s linear;
+
+    &:hover{
+        border: 8px solid var(--primary-bg);
+    }
+
+    &:hover img {
+        transform: scale(0.95);
+        transition: transform 0.3s ease;
+    }
+
+    & img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+    }
+
 }
 
-.small-images a {
-    display: block;
-    margin: 0;
-    padding: 0;
-    border: none;
+.large-image,
+.small-images {
+    cursor: pointer;
 }
 
+.large-image img,
 .small-images img {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: cover;
-    margin: 0;
-    padding: 0;
-    border: none;
-}
-
-.large-image a img,
-.small-images a img {
     transform: scale(1);
-    /* Zoom effect on hover */
     transition: transform 0.3s ease;
     position: relative;
-
-
 }
 
-.large-image a:hover img,
-.small-images a:hover img {
-    transform: scale(0.95);
-    /* Zoom effect on hover */
-    transition: transform 0.3s ease;
-}
-
-/* Lightbox modal background styling */
+/* GALLERY MODAL */
 .gallery-modal {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
+    flex-direction: column;
+    gap: 10px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -45%);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 6;
+    z-index: 9999;
     display: none;
-    /* Hidden by default */
-}
+    height: 100%;
+    width: fit-content;
+    align-items: end;
 
-.gallery-modal .modal-content {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    width: 80%;
-    max-width: 500px;
-    text-align: center;
-    position: relative;
-}
+    opacity: 0;
+    transition: all 0.3s linear;
 
-.gallery-modal .modal-content img {
-    width: 100%;
-    height: auto;
-    margin-bottom: 10px;
-}
+    &.active {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
 
 
-.modal-content p {
-    font-size: 20px;
-    font: "Monserrat", sans-serif;
-    color: #333;
-    margin: 0;
+    & .image-modal {
+        object-fit: contain !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--bg-300);
+
+        width: 100%;
+        height: 80%;
+
+    }
+
+    & [data-modal-caption] {
+        text-align: center;
+        width: 100%;
+    }
 }
 
 /* GALLERY SECTION*/
@@ -769,25 +754,25 @@
     justify-content: center;
     margin-top: var(--spacing-section);
 
-    & .impression-quotes{
+    & .impression-quotes {
         padding: 0 50px;
     }
 
-    & .impression-main-slider{
+    & .impression-main-slider {
         padding: 0 50px;
 
     }
 
-    & li.active .impression-child-holder{
-        
-            cursor: pointer !important;
-            scale: 1.2 !important;
+    & li.active .impression-child-holder {
 
-            background-color: var(--secondary-bg);
+        cursor: pointer !important;
+        scale: 1.2 !important;
 
-            & *{
-                color: white;
-            }
+        background-color: var(--secondary-bg);
+
+        & * {
+            color: white;
+        }
     }
 
     & .impression-child-holder {

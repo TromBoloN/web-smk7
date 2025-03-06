@@ -201,7 +201,7 @@
 
         <div class="news-content frow g-2">
             @foreach ($posts as $post)
-                <div class="news-item" onclick="window.location.href = '{{ url('blogs', $post->slug) }}' ">
+                <div class="news-item" onclick="window.location.href = '{{ url('blogs/detail', $post->slug) }}' ">
 
                     <div class="news-item-meta-data">
 
@@ -222,7 +222,7 @@
                     <div class="item-info">
                         <h3>{{ $post->title }}</h3>
                         <p>{!! Str::words(strip_tags($post->content), 50, '...') !!}</p>
-                        <a href="{{ url('blogs', $post->slug) }}" class="read-more">Read More</a>
+                        <a href="{{ url('blogs/detail', $post->slug) }}" class="read-more">Read More</a>
                     </div>
 
                 </div>
@@ -232,40 +232,44 @@
 
 
     <section class="featured-gallery frow">
-        <div class="large-image">
-            <a href="#"
-                onclick="openModal('galleryModal', 'images/gallery-1.jpeg', 'Caption for Image 1'); return false;">
-                <img src="images/gallery-1.jpeg" alt="Gallery Image 1">
-            </a>
+        <div class="large-image" data-image-modal='Foto Perpisahan Angkatan ke-23 (Harap di Zoom)'>
+                <img src="{{asset('images/angkatan23.JPG')}}" alt="Gallery Image 1">
         </div>
 
-        <div class="small-images">
-            <a href="#"
-                onclick="openModal('galleryModal', 'images/gallery-2.jpeg', 'Caption for Image 2'); return false;">
-                <img src="images/gallery-2.jpeg" alt="Gallery Image 2">
-            </a>
-            <a href="#"
-                onclick="openModal('galleryModal', 'images/gallery-4.jpeg', 'Caption for Image 4'); return false;">
-                <img src="images/gallery-4.1.jpeg" alt="Gallery Image 4">
-            </a>
-            <a href="#"
-                onclick="openModal('galleryModal', 'images/gallery-3.jpeg', 'Caption for Image 3'); return false;">
-                <img src="images/gallery-3.jpeg" alt="Gallery Image 3">
-            </a>
-            <a href="#"
-                onclick="openModal('galleryModal', 'images/gallery-5.jpeg', 'Caption for Image 5'); return false;">
-                <img src="images/gallery-5.jpeg" alt="Gallery Image 5">
-            </a>
+        <div class="frow">
+            
+            <div class="fcol grid-image">
+                <div class="small-images" data-image-modal='Kegiatan Pemeriksaan WarTek (Warung Teknologi) SMK Negeri 7 Samarinda Dari Tokoh Masyarakat'>
+                    <img src="{{asset('images/gallery-2.jpeg')}}" alt="Gallery Image 2">
+                </div>
+
+                <div class="small-images" data-image-modal='Kegiatan Malam Penghargaan Pemenang Lomba Bahan Ajar Digital Kaltim Tahun 2021'>
+                    <img src="{{asset('images/gallery-4.jpeg')}}" alt="Gallery Image 4">
+                </div>
+            </div>
+
+            <div class="fcol grid-image">
+                <div class="small-images" data-image-modal='Kegiatan Malam Penghargaan Pemenang Lomba Bahan Ajar Digital Kaltim Tahun 2021'>
+                    <img src="{{asset('images/gallery-3.jpeg')}}" alt="Gallery Image 3">
+                </div>
+
+                <div class="small-images" data-image-modal='Kegiatan Penerimaan Penghargaan pada acara Kaltim Education Award Tahun 2021'>
+                    <img src="{{asset('images/gallery-5.jpeg')}}" alt="Gallery Image 5">
+                </div>
+            </div>
+
         </div>
+
     </section>
 
     <!-- Gallery Modal -->
-    <div id="galleryModal" class="gallery-modal" style="display: none;">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('galleryModal')">&times;</span>
-            <img id="modal-image" src="" alt="Gallery Image">
-            <p id="modal-caption"></p>
+    <div class="darkness-backdrop-200" data-dark-backdrop></div>
+        <div data-gallery-modal class="gallery-modal" style="display: none;">
+        <div class="close-button offsite" data-close-side style="--size-close:30px">
+            <i class="fa-solid fa-times"></i>
         </div>
+        <img class="image-modal" src="" alt="">
+        <div data-modal-caption></div>
     </div>
 
 
@@ -407,6 +411,7 @@
         <img src="{{ asset('images/kedata.png') }}" alt="Sponsor Logo">
         <img src="{{ asset('images/Jupiter_IT_Solutions_Long.png') }}" alt="Sponsor Logo">
     </section>
+
 
     <!-- Footer -->
     @include('layouts.footer')
