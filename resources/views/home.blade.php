@@ -24,7 +24,7 @@
                 <h2 class="hero-caption">SELAMAT <span style="color: #f5ab35;">DATANG</span></h2>
                 <p>SMK Negeri 7 Samarinda Sebagai SMK Pusat Keunggulan, Menjadi SMK Unggulan yang Menghasilkan Sumber
                     Daya Manusia Bermutu dan Berdaya Saing Menuju CENTER OF EXCELLENCE.</p>
-                <button>JELAJAHI</button>
+                <button class="buttonnimation">JELAJAHI</button>
             </div>
         </div>
 
@@ -58,7 +58,7 @@
                 <div class="h-1">MELANGKAH MENUJU PRESTASI</div>
             </section>
 
-            <p>Mengembangkan bidang keahlian Teknologi Informasi dan Komunikasi, Memberikan kontribusi bagi percepatan
+            <p class="normal-landing">Mengembangkan bidang keahlian Teknologi Informasi dan Komunikasi, Memberikan kontribusi bagi percepatan
                 pembangunan di Kalimantan Timur, Mengembangkan manajemen pendidikan berbasis sekolah secara pro aktif
                 dan kreatif, dan Memacu perkembangan pendidikan yang lebih kompetitif dan mandiri.</p>
 
@@ -92,7 +92,7 @@
                 <div class="h-1">MELANGKAH MENUJU PRESTASI</div>
             </section>
 
-            <p>Mengembangkan bidang keahlian Teknologi Informasi dan Komunikasi, Memberikan kontribusi bagi percepatan
+            <p class="normal-landing">Mengembangkan bidang keahlian Teknologi Informasi dan Komunikasi, Memberikan kontribusi bagi percepatan
                 pembangunan di Kalimantan Timur, Mengembangkan manajemen pendidikan berbasis sekolah secara pro aktif
                 dan kreatif, dan Memacu perkembangan pendidikan yang lebih kompetitif dan mandiri.</p>
         </div>
@@ -102,8 +102,8 @@
     <section class="faith-section fcol">
 
         <div class="faith-section-header fcol g-2 aicenter jccenter">
-            <h3>TAMATAN YANG BERMUTU, KOMPETITIF DAN MANDIRI</h3>
-            <p>Menjadi Sekolah Bidang Teknologi Informasi Dan Komunikasi Bertaraf Internasional Berwawasan
+            <h3 class="h3-landing">TAMATAN YANG BERMUTU, KOMPETITIF DAN MANDIRI</h3>
+            <p class="normal-landing">Menjadi Sekolah Bidang Teknologi Informasi Dan Komunikasi Bertaraf Internasional Berwawasan
                 Lingkungan Dilandasi Iman Dan Taqwa</p>
         </div>
 
@@ -153,7 +153,7 @@
 
         <div class="cta-text">
             <section class="fcol">
-                <h3>Pendaftaran Peserta Didik Baru</h3>
+                <h3 class="h3-landing">Pendaftaran Peserta Didik Baru</h3>
                 <h5>"Ayo bergabung bersama kami !"</h5>
             </section>
             <a href="http://cabdinsamarinda.siap-ppdb.com/" class="cta-btn">DAFTAR</a>
@@ -161,15 +161,15 @@
     </section>
 
     <section class="academic-calendar fcol aicenter jcenter">
-        <h2>KALENDER AKADEMIK</h2>
-        <p>Siswa-siswa kami ialah siswa siswa yang berbakat, tekun dan penuh kreatifitas. Kami mendukung
+        <h3 class='h3-landing'>KALENDER AKADEMIK</h3>
+        <p class="normal-landing">Siswa-siswa kami ialah siswa siswa yang berbakat, tekun dan penuh kreatifitas. Kami mendukung
             dalam mewujudkan ide-ide mereka. Pemanfaatan kesempatan ialah fokus kami. <a href="#">Lihat Jadwal
                 Seluruhnya</a>
         </p>
     </section>
 
     <section class="achievements" style="background-image: {{ asset('images/achievements-bg.jpg') }}">
-        <h2 class="achievements-section-header">PRESTASI GURU DAN SISWA</h2>
+        <h3 class="h3-landing achievements-section-header">PRESTASI GURU DAN SISWA</h3>
 
         <div class="achievements-section-content">
 
@@ -197,7 +197,7 @@
     </section>
 
     <section class="featured-news fcol ga-4">
-        <h2 class="news-header">BERITA TERKINI</h2>
+        <h2 class="news-header h3-landing">BERITA TERKINI</h2>
 
         <div class="news-content frow g-2">
             @foreach ($posts as $post)
@@ -220,8 +220,8 @@
                         <img src="{{ asset('storage/' . $post->thumbnail) }}" alt="{{ $post->title }}">
                     </div>
                     <div class="item-info">
-                        <h3>{{ $post->title }}</h3>
-                        <p>{!! Str::words(strip_tags($post->content), 50, '...') !!}</p>
+                        <h3 >{{ $post->title }}</h3>
+                        <p class="normal-landing">{!! Str::words(strip_tags($post->content), 50, '...') !!}</p>
                         <a href="{{ url('blogs/detail', $post->slug) }}" class="read-more">Read More</a>
                     </div>
 
@@ -275,12 +275,12 @@
 
     <section class="featured-video">
         <div class="featured-desc">
-            <h2>PROFIL KAMI</h2>
-            <p>
+            <h3 class="h3-landing mb-4">PROFIL KAMI</h3>
+            <p class="normal-landing">
                 SMK Negeri 7 Samarinda Sebagai SMK PUSAT KEUNGGULAN. Menjadi SMK Unggulan yang Menghasilkan
                 Sumber Daya Manusia Bermutu dan Berdaya Saing Tinggi Menuju CENTER OF EXCELLENCY.
             </p>
-            <a href="#" class="primary-link hvr-push">Selengkapnya</a>
+            <a href="#" class="primary-link buttonnimation">Selengkapnya</a>
         </div>
 
         <div class="content-video">
@@ -294,7 +294,7 @@
     <section class="impressions">
 
         <section class="impression-quotes fcol jccenter aicenter">
-            <h1>KESAN ALUMNI</h1>
+            <h3 class="h3-landing">KESAN ALUMNI</h3>
             <div class="col-sm-12">
                 <div class="tab-content">
 

@@ -2,7 +2,6 @@
 
 namespace App\Livewire;
 
-use App\Models\BlogPost;
 use App\Models\Guru;
 use Livewire\Component;
 use Livewire\WithoutUrlPagination;

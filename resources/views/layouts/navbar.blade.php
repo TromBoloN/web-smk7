@@ -93,19 +93,36 @@
 
     <ul class="navbar-list">
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link  dropdown-toggle" type="button" id="dropdownMenuClickableInside" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
                 Profil
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a href="#" class="dropdown-item">Sejarah Singkat</a></li>
-                <li><a href="#" class="dropdown-item">Sejarah Pengembangan</a></li>
-                <li><a href="#" class="dropdown-item">Visi dan Misi</a></li>
-                <li><a href="#" class="dropdown-item">Program Keahlian</a></li>
-                <li><a href="#" class="dropdown-item">Konsentrasi Keahlian</a></li>
-                <li><a href="#" class="dropdown-item">Karakteristik Program</a></li>
-                <li><a href="#" class="dropdown-item">Profil Pimpinan</a></li>
-                <li><a href="#" class="dropdown-item">Sarana Prasarana</a></li>
+                <li><a href="{{url('sejarah-singkat')}}" class="dropdown-item">Sejarah Singkat</a></li>
+                <li><a href="{{url('sejarah-pengembangan')}}" class="dropdown-item">Sejarah Pengembangan</a></li>
+                <li><a href="{{url('visi-dan-misi')}}" class="dropdown-item">Visi dan Misi</a></li>
+                <li><a href="{{url('program-keahlian')}}" class="dropdown-item">Program Keahlian</a></li>
+                
+                <div class="btn-group dropend w-100 ">
+                    <a href="#" type="button" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Konsentrasi Keahlian</a>
+                    <ul class="dropdown-menu rooted">
+                        <li><a href='{{url('konsentrasi-keahlian/pengembangan-perangkat-lunak-dan-gim')}}' class="dropdown-item" type="button">Pengembangan Perangkat Lunak dan Gim</a></li>
+                        <li><a href='{{url('konsentrasi-keahlian/teknik-jaringan-komputer-dan-telekomunikasi')}}' class="dropdown-item" type="button">Teknik Jaringan Komputer dan Telekomunikasi</a></li>
+                        <li><a href='{{url('konsentrasi-keahlian/desain-komunikasi-visual')}}' class="dropdown-item" type="button">Desain Komunikasi Visual</a></li>
+                        <li><a href='' class="dropdown-item disabled" type="button">Animasi</a></li>
+                    </ul>
+                </div>
+                
+                <li><a href="{{url('tugas-dan-tujuan')}}" class="dropdown-item">Tugas dan Tujuan</a></li>
+                <li><a href="#" class="dropdown-item disabled">Profil Pimpinan</a></li>
+
+                <div class="btn-group dropend w-100 ">
+                    <a href="#" type="button" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Sarana dan Prasarana</a>
+                    <ul class="dropdown-menu rooted">
+                        <li><a href='{{url('sarana-prasarana/infrastruktur')}}' class="dropdown-item" type="button">Sarana Infrastruktur</a></li>
+                        <li><a href='{{url('sarana-prasarana/pembelajaran')}}' class="dropdown-item" type="button">Sarana Pembelajaran</a></li>
+                    </ul>
+                </div>
+
             </ul>
         </li>
         <li class="nav-item dropdown">
@@ -114,16 +131,15 @@
                 Program Sekolah
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="/about-us/program-kerja">PROGRAM KERJA</a></li>
-                <li><a class="dropdown-item" href="/about-us/peraturan=kemdikbud">PERATURAN KEMDIKBUD</a></li>
-                <li><a class="dropdown-item" href="/about-us/hubungan-industri">HUBUNGAN INDUSTRI</a></li>
-                <li><a class="dropdown-item" href="/about-us/teaching-factory-dan-program-inovasi">TEACHING FACTORY DAN
-                        PROGRAM INOVASI</a></li>
-                <li><a class="dropdown-item" href="/about-us/program-bussiness-center-unit-produksi">PROGRAM BUSINESS
+                <li><a class="dropdown-item disabled" href="/about-us/program-kerja">PROGRAM KERJA</a></li>
+                <li><a class="dropdown-item disabled" href="/about-us/peraturan=kemdikbud">PERATURAN KEMDIKBUD</a></li>
+                <li><a class="dropdown-item" href="{{url('hubungan-industri')}}">HUBUNGAN INDUSTRI</a></li>
+                <li><a class="dropdown-item disabled" href="/about-us/teaching-factory-dan-program-inovasi">TEACHING FACTORY DAN PROGRAM INOVASI</a></li>
+                <li><a class="dropdown-item disabled" href="/about-us/program-bussiness-center-unit-produksi">PROGRAM BUSINESS
                         CENTER (UNIT PRODUKSI)</a></li>
-                <li><a class="dropdown-item" href="/about-us/program-pengembangan-sekolah">PROGRAM PENGEMBANGAN
+                <li><a class="dropdown-item disabled" href="/about-us/program-pengembangan-sekolah">PROGRAM PENGEMBANGAN
                         SEKOLAH</a></li>
-                <li><a class="dropdown-item" href="/about-us/program-spw">PROGRAM SPW</a></li>
+                <li><a class="dropdown-item disabled" href="/about-us/program-spw">PROGRAM SPW</a></li>
             </ul>
         </li>
         <li class="nav-item dropdown">
@@ -132,11 +148,11 @@
                 Akademik
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a href="#" class="dropdown-item">Berita</a></li>
-                <li><a href="#" class="dropdown-item">Kalender Akademik</a></li>
-                <li><a href="#" class="dropdown-item">Kegiatan</a></li>
-                <li><a href="#" class="dropdown-item">Jadwal</a></li>
-                <li><a href="#" class="dropdown-item">Data Guru</a></li>
+                <li><a href="{{url('blogs')}}" class="dropdown-item">Berita</a></li>
+                <li><a href="#" class="dropdown-item disabled">Kalender Akademik</a></li>
+                <li><a href="#" class="dropdown-item disabled">Kegiatan</a></li>
+                <li><a href="#" class="dropdown-item disabled">Jadwal</a></li>
+                <li><a href="{{url('teachers')}}" class="dropdown-item">Data Guru</a></li>
             </ul>
         </li>
         <li class="nav-item">

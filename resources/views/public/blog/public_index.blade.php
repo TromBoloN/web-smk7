@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'Search Results')
+@section('title', 'Main Blog Page')
+
+@section('style')
+    <link rel="stylesheet" href="{{asset('css/blog.css')}}">
+@endsection
 
 @section('content')
 
@@ -14,7 +18,7 @@
                 <div data-slider_controller="right"> <i class="fa-solid fa-arrow-right"></i> </div>
             </section>
 
-            <div class="" data-slider-holder style="--height-slider: 420px">
+            <div class="" data-slider-holder style="--height-slider: 380px">
                 <ul data-slider-track='100'>
 
                     @foreach ($later as $item)
@@ -56,8 +60,8 @@
                 class="fcol  categorical-decor-top g-1 categorical-1-left">
                 <img class="" src="/storage/{{ $first_related->thumbnail }}" alt="">
                 <h3 class='mt-20 blog-title-text h-94 bwe'>{{ $first_related->title }}</h3>
-                <h3 class="blog-content-text blog-title-text h-92 rwe">{!! strip_tags($item->content) !!}</h3>
-                <h3 class='h-92'>{{ $item->created_at->format('d M Y') }}</h3>
+                <h3 class="blog-content-text blog-title-text h-93 rwe">{!! strip_tags($item->content) !!}</h3>
+                <h3 class='h-93'>{{ $item->created_at->format('d M Y') }}</h3>
             </a>
 
             @if ($other_related->count() > 0)
@@ -70,7 +74,7 @@
 
                             <div class='fcol aicneter jccenter p-10'>
                                 <h3 class='h-93 rwe blog-title-text'>{{ $item->title }}</h3>
-                                <h3 class='h-92'>{{ $item->created_at->format('d M Y') }}</h3>
+                                <h3 class='h-93'>{{ $item->created_at->format('d M Y') }}</h3>
                             </div>
                         </a>
                     @endforeach
@@ -131,6 +135,10 @@
 
         </section>
     </section>
-    <script src="{{ asset('js/slider.js') }}"></script>
 
+
+    @endsection
+
+    @section('script')
+    <script src="{{ asset('js/slider.js') }}"></script>
     @endsection

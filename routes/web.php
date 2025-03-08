@@ -12,6 +12,24 @@ use App\Http\Controllers\CommentController;
 
 // Public Routes
 Route::get('/', [ViewController::class, 'home']);
+Route::get('/sejarah-singkat', [ViewController::class, 'short_history']);
+Route::get('/sejarah-pengembangan', [ViewController::class, 'development_history']);
+Route::get('/visi-dan-misi', [ViewController::class, 'vision_mission']);
+Route::get('/program-keahlian', [ViewController::class, 'vocational_major']);
+
+Route::prefix('konsentrasi-keahlian')->group(function (){
+    Route::get('/teknik-jaringan-komputer-dan-telekomunikasi', [ViewController::class, 'tjkt']);
+    Route::get('/pengembangan-perangkat-lunak-dan-gim', [ViewController::class, 'pplg']);
+    Route::get('/desain-komunikasi-visual', [ViewController::class, 'dkv']);
+});
+
+Route::prefix('sarana-prasarana')->group(function (){
+    Route::get('/infrastruktur', [ViewController::class, 'infra']);
+    Route::get('/pembelajaran', [ViewController::class, 'bljr']);
+});
+
+Route::get('/tugas-dan-tujuan', [ViewController::class, 'program_characteristic']);
+Route::get('/hubungan-industri', [ViewController::class, 'hubungan_industri']);
 
 // Blog Public Routes
 Route::get('/blogs', [BlogPostController::class, 'public_Index'])->name('berita.index');

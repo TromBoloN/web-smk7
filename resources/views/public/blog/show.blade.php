@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
-@section('title', 'Search Results')
-
+@section('title', 'Detail Blog')
+@section('style')
+    <link rel="stylesheet" href="{{asset('css/blog.css')}}">
+@endsection
 @section('content')
 
     <main class="main-blog-detail">

@@ -110,15 +110,16 @@ text-overflow: ellipsis;
         min-width: 100%;
 
         & .blog-image {
+            background-color: var(--bg-300);
             aspect-ratio: 16/9;
             width: auto;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
         }
 
         & .blog-head {
             text-transform: uppercase;
-            font-size: 1.4rem !important;
+            font-size: 2rem !important;
         }
 
         & .blog-information {
@@ -132,12 +133,14 @@ text-overflow: ellipsis;
             & div {
                 display: flex;
                 gap: 10px;
-                font-size: 0.8rem !important;
+                font-size: 1.3rem !important;
+
             }
         }
 
         & .blog-content{
-            font-size: 0.8rem !important;
+            line-height: 1.8;
+            font-size: 1.3rem !important;
         }
 
     }
@@ -153,7 +156,7 @@ text-overflow: ellipsis;
         }
 
         & h5 {
-            font-size: 1.1rem;
+            font-size: 1.6rem;
             padding-bottom: 15px;
             margin-bottom: 20px;
             border-bottom: 2px solid var(--outline-100);
@@ -161,7 +164,7 @@ text-overflow: ellipsis;
         }
 
         & .blog-recommendation-child {
-            font-size: 0.75rem;
+            font-size: 1rem;
             padding-bottom: 10px;
             border-bottom: 1px solid var(--outline-100);
             text-align: start;
@@ -172,7 +175,6 @@ text-overflow: ellipsis;
             font-weight: 400;
 
             &.hot-blog {
-                font-size: 0.7rem;
                 color: var(--secondary-color);
                 letter-spacing: 1.5px;
                 font-weight: 500;
@@ -222,6 +224,7 @@ text-overflow: ellipsis;
     & .main-catalog-blog-all-container {
         display: grid;
         grid-template-columns: 1fr 1fr;
+        justify-items: center;
         align-items: center;
         background-color: var(--primary-body-bg);
         padding: 0 50px;
@@ -230,7 +233,7 @@ text-overflow: ellipsis;
 
         & .main-catalog-blog-img {
             border-radius: 20px;
-            height: 350px;
+            height: 300px;
             max-width: 100%;
             object-fit: cover;
         }
@@ -242,11 +245,11 @@ text-overflow: ellipsis;
 
             & .main-catalog-blog-date {
                 color: var(--outline-color-100);
-                font-size: 1rem;
+                font-size: 1.1rem;
             }
 
             & .main-catalog-blog-title {
-                font-size: 1.4rem;
+                font-size: 1.8rem;
                 font-weight: 700;
 
                 text-overflow: ellipsis;
@@ -257,7 +260,7 @@ text-overflow: ellipsis;
             }
 
             & .main-catalog-blog-content {
-                font-size: 0.7rem;
+                font-size: 1.3rem;
                 color: var(--outline-color-200);
 
                 /* ALTERNATES FOR OLDER BROWSER */
@@ -363,7 +366,7 @@ text-overflow: ellipsis;
     gap: 40px;
     justify-content: center;
     align-items: center;
-    padding: 0 100px;
+    padding: 0 50px;
 
     & .category-catalog-child{
         width: min(320px, 100%);
@@ -394,7 +397,7 @@ text-overflow: ellipsis;
         }
 
         & h5 {
-            font-size: 1.1rem;
+            font-size: 1.6rem;
             padding-bottom: 15px;
             margin-bottom: 20px;
             border-bottom: 2px solid var(--outline-100);
@@ -402,7 +405,7 @@ text-overflow: ellipsis;
         }
 
         & .blog-recommendation-child {
-            font-size: 0.75rem;
+            font-size: 1.2rem;
             padding-bottom: 10px;
             border-bottom: 1px solid var(--outline-100);
             text-align: start;

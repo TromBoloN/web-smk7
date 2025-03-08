@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('title', 'Search Results')
-
+@section('style')
+    <link rel="stylesheet" href="{{asset('css/blog.css')}}">
+@endsection
 @section('content')
 
 <section class="frow g-2 mt-extra mb-2 padding-blog">

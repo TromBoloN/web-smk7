@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'Search Results')
+@section('title', 'Category Blog Page ')
+
+@section('style')
+    <link rel="stylesheet" href="{{asset('css/blog.css')}}">
+@endsection
 
 @section('content')
 
