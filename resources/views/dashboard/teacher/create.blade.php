@@ -49,7 +49,8 @@
         </div>
 
         <!-- Submit Button -->
-        <button type="submit" class="form-submit">Add Guru</button>
+    <button type="submit" class="form-submit">{{ request()->is('*edit*') ? 'Ubah Guru': 'Tambah Guru'}}</button>
+
     </form>
 
     <script src="{{url('js/image-upload.js')}}"></script>

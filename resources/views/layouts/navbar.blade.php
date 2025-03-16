@@ -156,7 +156,7 @@
             </ul>
         </li>
         <li class="nav-item">
-            <a href="/" class="nav-link">Galeri</a>
+            <a href="{{url('/gallery')}}" class="nav-link">Galeri</a>
         </li>
         <li class="nav-item">
             <a href="/" class="nav-link">Kontak Kami</a>

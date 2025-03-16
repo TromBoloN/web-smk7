@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\ViewController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
@@ -16,6 +17,7 @@ Route::get('/sejarah-singkat', [ViewController::class, 'short_history']);
 Route::get('/sejarah-pengembangan', [ViewController::class, 'development_history']);
 Route::get('/visi-dan-misi', [ViewController::class, 'vision_mission']);
 Route::get('/program-keahlian', [ViewController::class, 'vocational_major']);
+Route::get('/gallery', [GalleryController::class, 'public_index']);
 
 Route::prefix('konsentrasi-keahlian')->group(function (){
     Route::get('/teknik-jaringan-komputer-dan-telekomunikasi', [ViewController::class, 'tjkt']);
@@ -51,7 +53,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Admin Routes 
 Route::middleware(['role:4'])->prefix('admin')->group(function () {
-    Route::view('/', 'dashboard.admin')->name('admin');
+    Route::view('/', 'dashboard.index')->name('admin');
 
     // Blog Routes
     Route::resource('/blogs', BlogPostController::class);
@@ -59,4 +61,7 @@ Route::middleware(['role:4'])->prefix('admin')->group(function () {
 
     // Guru Routes
     Route::resource('/teachers', GuruController::class);
+
+    // Gallery Routes
+    Route::resource('/gallery', GalleryController::class);
 });

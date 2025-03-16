@@ -190,6 +190,17 @@ text-overflow: ellipsis;
 
 }
 
+.see-more-blog{
+    text-decoration: none;
+    color: var(--primary-bg);
+    width: fit-content;
+    cursor: pointer;
+
+    &:hover{
+        border-bottom: 1px solid var(--primary-bg);
+    }
+}
+
 .main-catalog-header,
 .main-catalog-subheader {
     padding-bottom: 10px;
@@ -212,7 +223,12 @@ text-overflow: ellipsis;
 }
 
 .main-catalog-subheader {
-    margin: var(--spacing-top-nav) 40px 50px 120px !important;
+    width: fit-content;
+    margin: 0 40px 50px 120px !important;
+
+    &::after{
+        width: 50%;
+    }
 }
 
 .main-catalog-blog {

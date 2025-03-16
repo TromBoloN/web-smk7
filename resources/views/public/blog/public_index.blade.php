@@ -53,21 +53,21 @@
         </div>
     @endif
 
-    <h1 class="main-catalog-subheader frow aicenter h-95">RELATED POST</h1>
-    @if (isset($first_related))
-        <section class="padding-blog categorical-catalog-1">
-            <a href="{{ url('blogs/detail', $first_related->slug) }}"
+    <h1 class="main-catalog-subheader frow aicenter h-95">EDITOR'S CHOICE</h1>
+    @if (isset($first_choice))
+        <section class="padding-blog categorical-catalog-1 mb-extra">
+            <a href="{{ url('blogs/detail', $first_choice->slug) }}"
                 class="fcol  categorical-decor-top g-1 categorical-1-left">
-                <img class="" src="/storage/{{ $first_related->thumbnail }}" alt="">
-                <h3 class='mt-20 blog-title-text h-94 bwe'>{{ $first_related->title }}</h3>
+                <img class="" src="/storage/{{ $first_choice->thumbnail }}" alt="">
+                <h3 class='mt-20 blog-title-text h-94 bwe'>{{ $first_choice->title }}</h3>
                 <h3 class="blog-content-text blog-title-text h-93 rwe">{!! strip_tags($item->content) !!}</h3>
                 <h3 class='h-93'>{{ $item->created_at->format('d M Y') }}</h3>
             </a>
 
-            @if ($other_related->count() > 0)
+            @if ($other_choice->count() > 0)
                 <div class="categorical-other-catalaog">
 
-                    @foreach ($other_related as $item)
+                    @foreach ($other_choice as $item)
                         <a href="{{ url('blogs/detail', $item->slug) }}"
                             class="frow g-1 categorical-decor-left categorical-1-column">
                             <img src="/storage/{{ $item->thumbnail }}" alt="">
@@ -86,27 +86,29 @@
             @endif
         </section>
     @else
-        <div class='not-found-image-container'>
+        <div class='not-found-image-container mb-extra'>
             <img class='not-found-data' src="{{ asset('images/not-found.png') }}" alt="">
         </div>
     @endif
 
-    <h1 class="main-catalog-subheader frow aicenter h-95">EDITIOR'S CHOICE</h1>
-    @if ($editors_choice->count() > 0)
-        <section class="padding-blog categorical-catalog-2">
-            @foreach ($editors_choice as $item)
-                <a href="{{ url('blogs/detail', $item->slug) }}" class="fcol categorical-decor-top categorical-2-left">
-                    <img class="" src="/storage/{{ $item->thumbnail }}" alt="">
-                    <button class='mt-20 blog-title-categ h-92 mt-4 rwe'>{{ $item->category }}</button>
-                    <h3 class='mt-20 blog-title-text h-93 sbwe'>{{ $item->title }}</h3>
-                    <h3 class='h-92'>{{ $item->created_at->format('d M Y') }}</h3>
-                </a>
-            @endforeach
+    @if ($blog_categories->count() > 0)
+
+    @foreach ($blog_categories as $key => $categ)
+    <h1 class="main-catalog-subheader frow aicenter h-95">{{$key}}</h1>
+        <section class="fcol g-1 padding-blog">
+            <a href='{{url("blogs/category/$key")}}' class="see-more-blog h-94">See More <i class="h-92 see-more-blog fa-solid fa-arrow-right"></i></a>
+            <section class="categorical-catalog-2">
+                @foreach ($categ as $item)
+                    <a href="{{ url('blogs/detail', $item->slug) }}" class="fcol categorical-decor-top categorical-2-left">
+                        <img class="" src="/storage/{{ $item->thumbnail }}" alt="">
+                        <button class='mt-20 blog-title-categ h-92 mt-4 rwe'>{{ $item->category }}</button>
+                        <h3 class='mt-20 blog-title-text h-93 sbwe'>{{ $item->title }}</h3>
+                        <h3 class='h-92'>{{ $item->created_at->format('d M Y') }}</h3>
+                    </a>
+                @endforeach
+            </section>
         </section>
-    @else
-        <div class='not-found-image-container'>
-            <img class='not-found-data' src="{{ asset('images/not-found.png') }}" alt="">
-        </div>
+    @endforeach
     @endif
 
     <section class="padding-blog mb-extra fcol g-2 tab-section">

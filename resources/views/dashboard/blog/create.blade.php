@@ -61,7 +61,7 @@
             </select>
         </div>
 
-        <div>
+        <div class="form-child">
             <label for="user_id">Author</label>
             <select name="user_id" required class="form-control">
                 @foreach($users as $user)
@@ -79,6 +79,7 @@
             </label>
 
         </div>
+        <h6>* Editor's choice dibatasi sampai 4, jika lebih, Editor's choice yang terlama akan di singkirkan otomatis</h6>
         @error('editors_choice')
             <div class="error">{{$message}}</div>
         @enderror
@@ -89,7 +90,8 @@
         </div>
 
         <!-- Submit Button -->
-        <button type="submit" class="form-submit">Add Blog</button>
+        <button type="submit" class="form-submit">{{ request()->is('*edit*') ? 'Ubah Blog': 'Tambah Blog'}}</button>
+
     </form>
     
 

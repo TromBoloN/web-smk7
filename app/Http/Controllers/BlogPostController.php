@@ -15,25 +15,22 @@ class BlogPostController extends Controller
     public function public_Index()
     {
         $later = BlogPost::with('user')->latest()->take(5)->get(); // Get the absolute newest one
-        $editors_choice = BlogPost::with('user')->where('is_editors_choice', true)->take(3)->get(); // Get the absolute newest one
-        $related = null;
-        $first_related = null;
-        $other_related = null;
-        $post_category = BlogPost::all()->pluck('category')->unique();
-        
-        if($later->isNotEmpty()){
-            $related = BlogPost::with('user')
-            ->where('category', $later->first()->category) // Match category
-            ->where('id', '!=', $later->first()->id) // Exclude the latest post itself
-            ->take(4)
-            ->get();
+        $post_category = BlogPost::distinct()->pluck('category');
 
-        $first_related = $related->shift();
-        $other_related = $related;
-        }
-        
+        $editors_choice =
+        BlogPost::with('user')->where('is_editors_choice', true)
+        ->take(4)
+        ->get();
 
-        return view('public.blog.public_index', compact('later','post_category','first_related', 'other_related', 'editors_choice', 'related'));
+        $first_choice = $editors_choice->shift();
+        $other_choice = $editors_choice;
+
+        $categories = BlogPost::whereIn('category', $post_category)->get()->groupBy('category');
+        $blog_categories = $categories->map(function($item){
+            return $item->take(3);
+        });
+
+        return view('public.blog.public_index', compact('later','post_category','first_choice', 'other_choice', 'blog_categories'));
     }
 
     public function category($category){
@@ -94,6 +91,11 @@ class BlogPostController extends Controller
             'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
+        $editors_checker = BlogPost::where('is_editors_choice', 1)->get();
+        if($editors_checker->count() >= 4){
+            $editors_checker->sortBy('updated_at')->first()->update(['is_editors_choice'=> 0]);
+        }
+
         if(!$request->is_editors_choice){
             $validated['is_editors_choice'] = false;
         }
@@ -126,13 +128,17 @@ class BlogPostController extends Controller
             'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
+
+        $editors_checker = BlogPost::where('is_editors_choice', 1)->get();
+        if($editors_checker->count() >= 4){
+            $editors_checker->sortBy('updated_at')->first()->update(['is_editors_choice'=> 0]);
+        }
+
         if(!$request->is_editors_choice){
             $validated['is_editors_choice'] = false;
         }else{
             $validated['is_editors_choice'] = true;
         }
-
-        info($validated);
 
         $post = BlogPost::findOrFail($id);
 

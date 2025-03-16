@@ -98,6 +98,11 @@
                         <i class="fa-solid fa-newspaper"></i>
                         <h5>Blog</h5>
                     </a>
+
+                    <a href='{{url("/admin/gallery")}}' class="dashboard-item @if(request()->is('*admin/gallery*') ) -active- @endif  ">
+                        <i class="fa-solid fa-image"></i>
+                        <h5>Gallery</h5>
+                    </a>
                 </section>
             </section>
 
