@@ -1,3 +1,5 @@
+<div class="darkness-backdrop-100" data-dark-backdrop>
+</div>
 <nav class="main-side-navigation dashboard-side">
     <div class="close-side-nav" data-close-side>
         <i class="fa-solid fa-times"></i>
@@ -5,30 +7,70 @@
 
     <section class="side-navbar-list">
 
+        <a href="{{url('')}}" class="dropdown-container">
+            <div class="frow jcsbetween" data-dropdown-nav-button>
+                <div class="frow g-2">
+                    <i class="fa-solid fa-home nav-symbol"></i>
+                    <h5>Home</h5>
+                </div>
+            </div>
+        </a>
+
         <div class="dropdown-container">
             <div class="frow jcsbetween" data-dropdown-nav-button>
-                <div class="frow ga-3">
+                <div class="frow g-2">
                     <i class="fa-solid fa-user nav-symbol"></i>
                     <h5>Profile</h5>
                 </div>
                 <i class="fa-solid fa-caret-right dropdown-symbol"></i>
             </div>
 
-            <div class="dropdown-content">
-                <h5>Sejarah Singkat</h5>
-                <h5>Sejarah Pengembangan</h5>
-                <h5>Visi dan Misi</h5>
-                <h5>Program Keahlian</h5>
-                <h5>Konsentrasi Keahlian</h5>
-                <h5>Karakteristik Program</h5>
-                <h5>Profil Pimpinan</h5>
-                <h5>Sarana Prasarana</h5>
+            <div class="dropdown-content" id="sidebarz-drop-1">
+                <a href="{{url('sejarah-singkat')}}">Sejarah Singkat</a>
+                <a href="{{url('sejarah-pengembangan')}}">Sejarah Pengembangan</a>
+                <a href="{{url('visi-dan-misi')}}">Visi dan Misi</a>
+                <a href="{{url('program-keahlian')}}">Program Keahlian</a>
+                
+                <div class="dropdown-container" data-rooted-container>
+                    <div class="frow jcsbetween rooted-drop" data-rooted-link="sidebarz-drop-1" data-dropdown-nav-button='rooted'>
+                        <div class="frow g-2">
+                            <h5>Konsentrasi Keahlian</h5>
+                        </div>
+                        <i class="fa-solid fa-caret-right dropdown-symbol"></i>
+                    </div>
+
+                    <div class="dropdown-content">
+                        <a href='{{url('konsentrasi-keahlian/pengembangan-perangkat-lunak-dan-gim')}}' class=" ">Pengembangan Perangkat Lunak dan Gim</a>
+                        <a href='{{url('konsentrasi-keahlian/teknik-jaringan-komputer-dan-telekomunikasi')}}' class=" ">Teknik Jaringan Komputer dan Telekomunikasi</a>
+                        <a href='{{url('konsentrasi-keahlian/desain-komunikasi-visual')}}' class=" ">Desain Komunikasi Visual</a>
+                        <a href='' class="disabled">Animasi</a>
+                    </div>
+                </div>
+
+                <a href="{{url('tugas-dan-tujuan')}}" class="dropdown-item">Tugas dan Tujuan</a>
+                
+                <a href="#" class="disabled">Profil Pimpinan</a>
+                
+                <div class="dropdown-container" data-rooted-container>
+                    <div class="frow jcsbetween rooted-drop" data-rooted-link="sidebarz-drop-1" data-dropdown-nav-button='rooted'>
+                        <div class="frow g-2">
+                            <h5>Sarana dan Prasarana</h5>
+                        </div>
+                        <i class="fa-solid fa-caret-right dropdown-symbol"></i>
+                    </div>
+
+                    <div class="dropdown-content">
+                        <a href='{{url('sarana-prasarana/infrastruktur')}}'>Sarana Infrastruktur</a>
+                        <a href='{{url('sarana-prasarana/pembelajaran')}}'>Sarana Pembelajaran</a>
+                    </div>
+                </div>
+
             </div>
         </div>
 
         <div class="dropdown-container ">
             <div class="frow jcsbetween" data-dropdown-nav-button>
-                <div class="frow ga-3">
+                <div class="frow g-2">
                     <i class="fa-solid fa-school nav-symbol"></i>
                     <h5>Program Sekolah</h5>
                 </div>
@@ -36,47 +78,51 @@
             </div>
 
             <div class="dropdown-content">
-                <h5 class="dropdown-item" href="/about-us/program-kerja">PROGRAM KERJA</h5>
-                <h5 class="dropdown-item" href="/about-us/peraturan=kemdikbud">PERATURAN KEMDIKBUD</h5>
-                <h5 class="dropdown-item" href="/about-us/hubungan-industri">HUBUNGAN INDUSTRI</h5>
-                <h5 class="dropdown-item" href="/about-us/teaching-factory-dan-program-inovasi">TEACHING FACTORY DAN PROGRAM INOVASI</h5>
-                <h5 class="dropdown-item" href="/about-us/program-bussiness-center-unit-produksi">PROGRAM BUSINESS
-                    CENTER (UNIT PRODUKSI)</h5>
-                <h5 class="dropdown-item" href="/about-us/program-pengembangan-sekolah">PROGRAM PENGEMBANGAN
-                    SEKOLAH</h5>
-                <h5 class="dropdown-item" href="/about-us/program-spw">PROGRAM SPW</h5>
+                <a class="disabled" href="/about-us/program-kerja">PROGRAM KERJA</a>
+                <a class="disabled" href="/about-us/peraturan=kemdikbud">PERATURAN KEMDIKBUD</a>
+                <a class="" href="{{url('hubungan-industri')}}">HUBUNGAN INDUSTRI</a>
+                <a class="disabled" href="/about-us/teaching-factory-dan-program-inovasi">TEACHING FACTORY DAN PROGRAM INOVASI</a>
+                <a class="disabled" href="/about-us/program-bussiness-center-unit-produksi">PROGRAM BUS CENTER (UNIT PRODUKSI)</a></li>
+                <a class="disabled" href="/about-us/program-pengembangan-sekolah">PROGRAM PENGEMBANGAN SEKOLAH</a></li>
+                <a class="disabled" href="/about-us/program-spw">PROGRAM SPW</a>
             </div>
         </div>
 
         <div class="dropdown-container">
             <div class="frow jcsbetween" data-dropdown-nav-button>
-                <div class="frow ga-3">
+                <div class="frow g-2">
                     <i class="fa-solid fa-graduation-cap nav-symbol"></i>
                     <h5>Akademik</h5>
                 </div>
                 <i class="fa-solid fa-caret-right dropdown-symbol"></i>
             </div>
+
+            <div class="dropdown-content">
+                <a href="{{url('blogs')}}">Berita</a>
+                <a href="#" class="disabled">Kalender Akademik</a>
+                <a href="#" class="disabled">Kegiatan</a>
+                <a href="#" class="disabled">Jadwal</a>
+                <a href="{{url('teachers')}}">Data Guru</a>
+            </div>
         </div>
 
-        <div class="dropdown-container">
+        <a href="{{url('gallery')}}" class="dropdown-container">
             <div class="frow jcsbetween" data-dropdown-nav-button>
-                <div class="frow ga-3">
+                <div class="frow g-2">
                     <i class="fa-solid fa-camera nav-symbol"></i>
                     <h5>Galeri</h5>
                 </div>
-                <i class="fa-solid fa-caret-right dropdown-symbol"></i>
             </div>
-        </div>
+        </a>
 
-        <div class="dropdown-container">
+        <a href="{{url('#')}}" class="dropdown-container">
             <div class="frow jcsbetween" data-dropdown-nav-button>
-                <div class="frow ga-3">
+                <div class="frow g-2">
                     <i class="fa-solid fa-phone nav-symbol"></i>
                     <h5>Kontak Kami</h5>
                 </div>
-                <i class="fa-solid fa-caret-right dropdown-symbol"></i>
             </div>
-        </div>
+        </a>
 
     </section>
 </nav>

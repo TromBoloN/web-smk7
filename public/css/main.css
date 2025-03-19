@@ -1176,7 +1176,7 @@ a {
     & .close-side-nav {
         width: var(--size-close);
         aspect-ratio: 1/1;
-        font-size: 2.2rem;
+        font-size: 2.8rem;
         cursor: pointer;
 
         /* transition-delay: 5s; */
@@ -1206,6 +1206,48 @@ a {
         overflow-x: hidden;
         margin-top: calc(var(--size-close) - var(--offset-position) + 35px);
 
+        &::-webkit-scrollbar{
+            background-color: transparent;
+            width: 5px;
+            height: 10px;
+        }
+    
+        &::-webkit-scrollbar-thumb{
+            border-radius: 10px;
+            background-color: var(--black-500);
+        }
+
+        & [data-rooted-container]{
+
+            & .dropdown-symbol{
+                transform: rotate(0deg) !important;
+                transition: transform .5s ease-in-out;
+            }
+
+            & [data-rooted-link]{
+                background-color: transparent !important;
+            }
+
+            &:hover [data-rooted-link]{
+                    background-color: var(--bg-600) !important;
+            }
+
+            &.active {
+
+                & [data-rooted-link] {
+                    background-color: var(--bg-600) !important;
+
+                    &:hover{
+                        background-color: var(--bg-700) !important;
+                    }
+                }
+
+                & .dropdown-symbol {
+                    transform: rotate(90deg) !important;
+                    transition: transform .5s ease-in-out;
+                }
+            }
+        }
 
         & [data-dropdown-nav-button] {
             padding: 10px;
@@ -1218,23 +1260,34 @@ a {
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                font-size: 1.5rem !important;
+                cursor: pointer;
+
+
             }
         }
 
         & .dropdown-container {
-            cursor: pointer;
-            text-decoration: none;
             text-decoration: none;
             color: black;
 
+            & [data-dropdown-nav-button]{
+            cursor: pointer;
+
+            }
+
             &:hover [data-dropdown-nav-button] {
-                background-color: var(--primary-body-bg);
+                background-color: var(--bg-600);
             }
 
             &.active {
 
                 & [data-dropdown-nav-button] {
-                    background-color: var(--primary-body-bg);
+                    background-color: var(--bg-600);
+
+                    &:hover{
+                        background-color: var(--bg-700);
+                    }
                 }
 
                 & .dropdown-symbol {
@@ -1286,6 +1339,7 @@ a {
                 &::before {
                     content: '';
                     position: absolute;
+                    z-index: 5;
                     top: 0;
                     left: 0;
                     height: 100%;
@@ -1293,15 +1347,24 @@ a {
                     background-color: var(--bg-200);
                 }
 
+                & > a:hover{
+                    background-color: var(--bg-500);
+                }
+
+                & .disabled{
+                    cursor: default !important;
+                    pointer-events: none;
+                    color: rgb(146, 146, 146);
+                }
+
                 &>* {
                     position: relative;
+                    font-size: 1.5rem;
                     padding: 10px;
                     padding-left: 30px;
                     margin: 0;
-
-                    &.active {
-                        background-color: var(--primary-body-bg);
-                    }
+                    text-decoration: none;
+                    color: var(--black-100);
 
                     &::before {
                         content: '';
@@ -1313,10 +1376,6 @@ a {
                         top: 50%;
                         transform: translateY(-50%);
                         left: 1px;
-                    }
-
-                    &:nth-last-child(1) {
-                        padding-bottom: 30px;
                     }
                 }
             }
@@ -1361,7 +1420,10 @@ a {
 
     &:hover {
         background-color: white;
-        color: #000;
+        
+        & *{
+            color: #000 !important;
+        }
     }
 }
 

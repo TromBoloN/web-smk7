@@ -2,8 +2,9 @@
 
 @section('content')
 
-<div class="data-dashboard">
+<div class="data-dashboard fcol">
     <section>Data Guru</section>
+    <div>0</div>
 </div>
 <div id="chart"></div>
 
