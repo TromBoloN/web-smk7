@@ -1049,6 +1049,10 @@ a {
 
     justify-content: space-between;
 
+    &:has(.dropdown-menu.show){
+        transform: translateY(0) !important;
+    }
+
     & .dropdown-item {
         font-size: 1.1rem;
         padding: 7px !important;

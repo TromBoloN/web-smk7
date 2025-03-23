@@ -53,13 +53,21 @@ function scroll_check(params) {
     let scrollVertical = window.scrollY
 
     if (scrollVertical > 10) {
-        nav.classList.remove('showed')
         nav.classList.add('scrolled')
-        nav.removeAttribute('data-top-showed')
+        nav.classList.remove('showed')
+ 
+        if(innerWidth > 768){
+            nav.removeAttribute('data-top-showed')
+        }
     }else{
         nav.setAttribute('data-top-showed', true)
         // nav.classList.remove('showed-lock')
-        nav.classList.add('showed')
+
+        if(innerWidth > 768){
+            nav.classList.add('showed')        
+        }else{
+            nav.classList.add('showed-lock')        
+        }
         nav.classList.remove('scrolled')
     }
 }
