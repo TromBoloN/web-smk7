@@ -7,6 +7,12 @@
 @section('content')
 
     <main class="main-blog-detail">
+
+        @include('layouts.alertz')
+        <div class="alertz-holder" data-alertz-holder>
+                
+        </div>
+
         <!-- Blog Post Content and Comment Section -->
         <section class="blog-content-container fcol ga-4">
             <img src="{{ asset('storage/' . $post->thumbnail) }}" alt="Thumbnail" class="blog-image">
@@ -37,9 +43,38 @@
             <div class='blog-content'>
                 {!! $post->content !!}
             </div>
+
         </section>
 
-        <section class="fcol g-1">
+       <section class="fcol comment-container">
+        <form id="comment-section" class="comment-form mt-30 mb-20" action="{{url('comments')}}" method="POST">
+            @csrf
+            <input type="hidden" value="{{$post->id}}" name='post_id'>
+            
+            <section class="fcol g-1 mt-50">
+                <h3 class="h-94 sbwe">Berikan Komentar</h3>
+                <h3 class="h-92 rwe">Mohon untuk menjaga komentar dengan tetap mematuhi tata bahasa yang digunakan</h3>
+            </section>
+            <input type="text" name="name" placeholder="Nama Anda..." value="{{old('name')}}">
+
+            <textarea name="comment" id="" placeholder="Comment..." rows="4">{{old('comment')}}</textarea>
+
+            <section class="fcol g-1">
+                <img src="{{ captcha_src('flat') }}" alt="captcha" class="captcha-img">
+                <input 
+                    type="text" name="captcha" class=" @error('captcha') is-invalid @enderror" placeholder="Please Insert Captcha"
+                >
+                @error('captcha') <div class="error">Captcha tidak sesuai, mohon mengisi dengan benar!</div> @enderror 
+            </section>
+
+            <button class="basic-button bwe">Publish</button>
+        </form>
+
+        <livewire:public-comment :post-id="$post->id" :sort="$order ?? session('order')"/>
+        {{-- @livewire('public-comment', ['postId' => $post->id], ['lazy' => true]) --}}
+       </section>
+
+        <section class="fcol g-1 blog-reference">
 
             <form class="search-container" action="{{ url('blogs/search') }}" method="GET">
                 <input name="query" type="text" placeholder='New Search'>
@@ -74,5 +109,6 @@
         </section>
 
     </main>
+    
 
 @endsection

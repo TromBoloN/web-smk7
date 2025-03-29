@@ -70,4 +70,4 @@ function scroll_check(params) {
         }
         nav.classList.remove('scrolled')
     }
-}
+} 

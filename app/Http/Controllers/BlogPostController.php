@@ -69,9 +69,10 @@ class BlogPostController extends Controller
         $post = BlogPost::where('slug', $slug)->firstOrFail();
         $posts = BlogPost::where('id', '!=', $post->id)->latest()->take(5)->get();
         $post_category = BlogPost::all()->pluck('category')->unique();
+        $order = session()->has('order') ? 'desc': 'asc';
 
         // Pass both the current post and the recent posts to the view
-        return view('public.blog.show', compact('post', 'posts', 'post_category'));
+        return view('public.blog.show', compact('post', 'posts', 'post_category', 'order'));
     }
 
     public function create()

@@ -4,27 +4,30 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Comment;
+use Illuminate\Support\Facades\Validator;
 
 class CommentController extends Controller
 {
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'post_id' => 'required|exists:blog_post,post_id',
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
+        $validator = Validator::make($request->all(), [
+            'captcha' =>'required|captcha',
+            'post_id' => 'required|exists:blog_post,id',
+            'name' => 'required|string|max:20',
             'comment' => 'required|string',
-            'website' => 'nullable|url',
         ]);
 
-        Comment::create([
-            'post_id' => $validatedData['post_id'],
-            'name' => $validatedData['name'],
-            'email' => $validatedData['email'],
-            'comment' => $validatedData['comment'],
-            'website' => $validatedData['website'] ?? null,
-        ]);
+        if ($validator->fails()) {
+            return redirect()->back()->withFragment('comment-section')
+                ->withErrors($validator)->withInput()->with([
+                    'type' => 'danger','title' => 'Invalid Input', 'message' => 'Input yang Anda masukkan tidak sesuai, mohon coba lagi'
+                ]);   
+        } else{
+            Comment::create($validator->validated());
+        }
 
-        return back()->with('success', 'Your comment has been posted successfully!');
+        return back()->withFragment('comment-section')->with([
+            'type' => 'success','title' => 'Aksi Berhasil!', 'message' => 'Komentar berhasil ditambahkan!', 'order' => 'desc'
+    ]);
     }
 }
