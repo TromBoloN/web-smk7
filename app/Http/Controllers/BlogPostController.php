@@ -8,6 +8,7 @@ use App\Models\BlogPost;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class BlogPostController extends Controller
 {
@@ -83,14 +84,36 @@ class BlogPostController extends Controller
 
     public function store(Request $request)
     {
-        $validate = $request->validate([
+        $validate = Validator::make($request->all(), [
             'title' => 'required|string|max:255',
             'content' => 'required|string',
             'user_id' => 'required|exists:users,id',
             'is_editors_choice' => 'nullable|boolean',
             'category' => 'required|in:Berita Umum,Tak Berkategori',
             'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ], [
+            'title.required' => 'Judul tidak boleh kosong',
+            'title.string' => 'Judul harus berupa string',
+            'title.max' => 'Judul tidak boleh lebih dari :max karakter',
+            'content.required' => 'Isi berita tidak boleh kosong',
+            'content.string' => 'Isi berita harus berupa string',
+            'user_id.required' => 'User ID tidak boleh kosong',
+            'user_id.exists' => 'User ID tidak valid',
+            'is_editors_choice.boolean' => 'Pilihan editor harus berupa boolean',
+            'category.required' => 'Kategori tidak boleh kosong',
+            'category.in' => 'Kategori tidak valid',
+            'thumbnail.image' => 'Thumbnail harus berupa gambar',
+            'thumbnail.mimes' => 'Thumbnail harus berupa file dengan ekstensi jpeg, png, jpg, atau gif',
+            'thumbnail.max' => 'Thumbnail tidak boleh lebih dari 2MB',
         ]);
+
+        if ($validate->fails()) {
+            return redirect()->back()->withErrors($validate)->withInput()->with([
+                'type' => 'danger','title' => 'Invalid Input', 'message' => 'Input yang Anda masukkan tidak sesuai, mohon coba lagi'
+            ]);
+        }
+
+        $data = $validate->validated();
 
         $editors_checker = BlogPost::where('is_editors_choice', 1)->get();
         if($editors_checker->count() >= 4){
@@ -98,18 +121,22 @@ class BlogPostController extends Controller
         }
 
         if(!$request->is_editors_choice){
-            $validated['is_editors_choice'] = false;
+            $data['is_editors_choice'] = false;
         }
 
         if ($request->hasFile('thumbnail')) {
-            $validate['thumbnail'] = $request->file('thumbnail')->store('thumbnails', 'public');
+            $data['thumbnail'] = $request->file('thumbnail')->store('thumbnails', 'public');
         }
 
         $create = BlogPost::create(
-            $validate
+            $data
         );
 
-        return redirect('admin/blogs')->with('success', 'Blog post added successfully.');
+        return redirect('admin/blogs')->with( 
+            [
+                'type' => 'success','title' => 'Input berhasil!', 'message' => 'Data berhasil ditambahkan!'
+            ]
+        );
     }
 
     public function edit($post_id)
@@ -121,14 +148,36 @@ class BlogPostController extends Controller
 
     public function update(Request $request, $id)
     {
-        $validated = $request->validate([
+        $validate = Validator::make($request->all(), [
             'title' => 'required|string|max:255',
             'content' => 'required|string',
             'user_id' => 'required|exists:users,id',
             'category' => 'required|in:Berita Umum,Tak Berkategori',
             'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ], [
+            'title.required' => 'Judul tidak boleh kosong',
+            'title.string' => 'Judul harus berupa string',
+            'title.max' => 'Judul tidak boleh lebih dari :max karakter',
+            'content.required' => 'Isi berita tidak boleh kosong',
+            'content.string' => 'Isi berita harus berupa string',
+            'user_id.required' => 'User ID tidak boleh kosong',
+            'user_id.exists' => 'User ID tidak valid',
+            'is_editors_choice.boolean' => 'Pilihan editor harus berupa boolean',
+            'category.required' => 'Kategori tidak boleh kosong',
+            'category.in' => 'Kategori tidak valid',
+            'thumbnail.image' => 'Thumbnail harus berupa gambar',
+            'thumbnail.mimes' => 'Thumbnail harus berupa file dengan ekstensi jpeg, png, jpg, atau gif',
+            'thumbnail.max' => 'Thumbnail tidak boleh lebih dari 2MB',
         ]);
 
+
+        if ($validate->fails()) {
+            return redirect()->back()->withErrors($validate)->withInput()->with([
+                'type' => 'danger','title' => 'Invalid Input', 'message' => 'Input yang Anda masukkan tidak sesuai, mohon coba lagi'
+            ]);
+        }
+
+        $data = $validate->validated();
 
         $editors_checker = BlogPost::where('is_editors_choice', 1)->get();
         if($editors_checker->count() >= 4){
@@ -136,9 +185,9 @@ class BlogPostController extends Controller
         }
 
         if(!$request->is_editors_choice){
-            $validated['is_editors_choice'] = false;
+            $data['is_editors_choice'] = false;
         }else{
-            $validated['is_editors_choice'] = true;
+            $data['is_editors_choice'] = true;
         }
 
         $post = BlogPost::findOrFail($id);
@@ -148,12 +197,16 @@ class BlogPostController extends Controller
                 Storage::disk('public')->delete($post->thumbnail);
             }
 
-            $validated['thumbnail'] = $request->file('thumbnail')->store('thumbnails', 'public');
+            $data['thumbnail'] = $request->file('thumbnail')->store('thumbnails', 'public');
         }
 
-          $post->update($validated);
+          $post->update($data);
 
-        return redirect('admin/blogs')->with('success', 'Blog post updated successfully.');
+        return redirect('admin/blogs')->with( 
+            [
+                'type' => 'success','title' => 'Input berhasil!', 'message' => 'Data berhasil diubah!'
+            ]
+        );
     }
 
     public function destroy($id)
@@ -166,6 +219,9 @@ class BlogPostController extends Controller
 
         $post->delete();
 
-        return redirect()->back()->with('success', 'Blog post deleted successfully.');
+        return redirect()->back()->with([
+            'type' => 'success','title' => 'Data dihapus!', 'message' => 'Data berhasil dihapus!'
+        ] 
+    );
     }
 }

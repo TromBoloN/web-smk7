@@ -32,14 +32,18 @@
 
                 </section>
                 
+                {{-- <input type="hidden" name="value-preview" class="value-preview"> --}}
                 <input type="file" name="thumbnail" {{isset($post->thumbnail) ? '' : 'required'}} class="form-image-upload">
             </div>
             
+            @error('thumbnail')
+                <div class="error">{{$message}}</div>
+            @enderror
         </div>
 
         <div class="form-child">
             <label for="nama" class="">Title</label>
-            <input type="text" name="title" required class="w-full p-2 border rounded" value="{{$post->title ?? ''}}">
+            <input type="text" name="title" required class="w-full p-2 border rounded" value="{{ old('title') ?? ($post->title ?? '') }}" >
             @error('title')
                 <div class="error">{{$message}}</div>
             @enderror
@@ -53,9 +57,12 @@
             <select name="category" required class="form-control">
                     @for ($i = 0; $i < count($opt_category); $i++)
                         <option 
-                        @isset($post->category)
-                            {{$post->category == $opt_category[$i] ? 'selected' : ''}}
-                        @endisset   
+                        @if( isset($post->category) && old('category') == null)
+                            {{$post->category == $opt_category[$i]  ? 'selected' : ''}}
+                        @else
+                            {{old('category') == $opt_category[$i] ? 'selected' : ''}}
+                        @endif
+
                         value="{{$opt_category[$i]}}">{{$opt_category[$i]}}</option>
                     @endfor
             </select>
@@ -69,12 +76,23 @@
                 @endforeach
             </select>
         </div>
+        @error('user_id')
+            <div class="error">{{$message}}</div>
+        @enderror
 
         <div class="form-child frow">
             
             <label for="is_editors_choice" class="">
                 <span>Editor's Choice</span>
-                <input  @isset($post->is_editors_choice) {{$post->is_editors_choice == 1 ? 'checked' : ''}} @endisset  name="is_editors_choice" id="is_editors_choice" type="checkbox" placeholder="Editor's Choice" class="w-full p-2 border rounded" value="1">
+                <input 
+
+                @if (isset($post->is_editors_choice) && old('title') == null)
+                     {{$post->is_editors_choice == 1 ? 'checked' : ''}} 
+                @else
+                    {{old('is_editors_choice') == 1 ? 'checked' : ''}}
+                @endif  
+                
+                name="is_editors_choice" id="is_editors_choice" type="checkbox" placeholder="Editor's Choice" class="w-full p-2 border rounded" value="1">
                 <span class="check"><i class="fa-solid fa-check"></i></span>
             </label>
 
@@ -86,7 +104,7 @@
 
         <div class="form-child">
             <label for="mapel" class="block text-gray-700">Content</label>
-            <textarea name="content" id="editor" required class="form-control" rows="10">{{$post->content ?? ''}}</textarea>
+            <textarea name="content" id="editor" required class="form-control" rows="10">{{ old('content') ?? ($post->content ?? '') }}</textarea>
         </div>
 
         <!-- Submit Button -->

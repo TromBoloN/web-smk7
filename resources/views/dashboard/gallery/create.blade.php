@@ -28,7 +28,7 @@
                     
                     <section class="fcol">
                         <h5>Drop your image here, or browse</h2>
-                        <h6>Req : PNG, JPG, JPEG, WEBP, Max: 2MB</h6>
+                        <h6>Req : PNG, JPG, JPEG, WEBP, Max: 5MB</h6>
                     </section>
 
                 </section>
@@ -36,11 +36,17 @@
                 <input type="file" name="image" id="image" {{isset($gallery->image) ? '' : 'required'}} class="form-image-upload">
             </div>
             
+            @error('image')
+                <div class="error">{{$message}}</div>
+            @enderror
         </div>
 
         <div class="form-child">
             <label for="caption" class="">Caption</label>
-            <input type="text" name="caption" id="caption" required class="w-full p-2 border rounded" value="{{$gallery->caption ?? ''}}">
+            <input type="text" name="caption" id="caption" required class="w-full p-2 border rounded" value="{{ old('caption') ?? ($gallery->caption ?? '') }}">
+            @error('caption')
+                <div class="error">{{$message}}</div>
+            @enderror
         </div>
 
         <!-- Submit Button -->

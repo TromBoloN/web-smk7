@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BlogPost;
+use App\Models\Guru;
 use Illuminate\Http\Request;
 
 class ViewController extends Controller
@@ -11,6 +12,13 @@ class ViewController extends Controller
     {
         $posts = BlogPost::with('user')->latest()->take(4)->get();
         return view('home', compact('posts'));
+    }
+
+    public function admin(){
+        $teachers = Guru::all()->count();
+        $blogs = BlogPost::all()->count();
+
+        return view('dashboard.index', compact('teachers', 'blogs'));
     }
 
     public function short_history()

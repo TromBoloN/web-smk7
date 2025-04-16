@@ -21,7 +21,9 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
 
             if(Auth::user()->role == 4){
-                return redirect('/admin');
+                return redirect('/admin')->with(
+                    ['type' => 'success','title' => 'Login Berhasil!', 'message' => 'Selamat Datang di dashboard!']
+                );
             }
             
             return redirect()->intended('/');

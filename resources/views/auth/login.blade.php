@@ -49,9 +49,9 @@
                 <span class="error-message">{{ $message }}</span>
             @enderror
 
-            <div class="form-footer">
+            {{-- <div class="form-footer">
                 Gak Punya Akun? <a href="{{ route('register') }}">Registrasi Disini</a>.
-            </div>
+            </div> --}}
 
         </form>
     </div>

@@ -76,12 +76,14 @@
     
     <div class="dashboard-section">
 
+        @include('layouts.alertz')
+
         <nav class="dashboard-side ">
             <section class="fcol ga-3">
 
                 <a href="{{url('/')}}" class="dashboard-logo  g-1">
                     <img src="{{ asset('images/smk7-no-bg-logo.png') }}" alt="" width="40">
-                    <h5>| SMKN 7</h5>
+                    <h5 class="h-94">| SMKN 7</h5>
                 </a>
 
                 <section class="dashboard-item-container">
@@ -109,7 +111,7 @@
             <form action="{{url('/logout')}}" method="post" class="logout-side">
                 @csrf
 
-                <button class="frow g-1 aicenter">
+                <button class="frow g-1 aicenter p-20">
                     <i class="fa-solid fa-door-open"></i>
                     <span>Logout</span>
                 </button>

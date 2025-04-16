@@ -44,8 +44,8 @@ Route::post('/comments', [CommentController::class, 'store'])->name('comments.st
 Route::get('/teachers', [GuruController::class, 'showTeachers'])->name('teachers.list');
 
 // Auth Routes
-Route::get('/register', [RegisterController::class, 'showRegisterForm'])->name('register');
-Route::post('/register', [RegisterController::class, 'register']);
+// Route::get('/register', [RegisterController::class, 'showRegisterForm'])->name('register');
+// Route::post('/register', [RegisterController::class, 'register']);
 
 Route::get('/login', [AuthController::class, 'form'])->name('login');
 Route::post('/auth', [AuthController::class, 'login'])->name('auth');
@@ -53,7 +53,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Admin Routes 
 Route::middleware(['role:4'])->prefix('admin')->group(function () {
-    Route::view('/', 'dashboard.index')->name('admin');
+    Route::get('/', [ViewController::class, 'admin'])->name('admin');
 
     // Blog Routes
     Route::resource('/blogs', BlogPostController::class);

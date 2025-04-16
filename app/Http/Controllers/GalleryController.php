@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Gallery;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Storage;
 
 class GalleryController extends Controller
@@ -36,20 +37,39 @@ class GalleryController extends Controller
      */
     public function store(Request $request)
     {
-        $validate = $request->validate([
+        $validate = Validator::make($request->all(), [
             'caption' => 'required|string|max:255',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:20480',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
+        ], [
+            'caption.required' => 'Caption tidak boleh kosong',
+            'caption.string' => 'Caption harus berupa string',
+            'caption.max' => 'Caption tidak boleh lebih dari :max karakter',
+            'image.required' => 'Gambar tidak boleh kosong',
+            'image.mimes' => 'Gambar harus berupa file dengan ekstensi jpeg, png, jpg, gif, atau webp',
+            'image.max' => 'Gambar tidak boleh lebih dari 5MB',
         ]);
 
+        if ($validate->fails()) {
+            return redirect()->back()->withErrors($validate)->withInput()->with([
+                'type' => 'danger','title' => 'Invalid Input', 'message' => 'Input yang Anda masukkan tidak sesuai, mohon coba lagi'
+            ]);
+        }
+
+        $data = $validate->validated();
+
         if ($request->hasFile('image')) {
-            $validate['image'] = $request->file('image')->store('images/gallery', 'public');
+            $data['image'] = $request->file('image')->store('images/gallery', 'public');
         }
 
         Gallery::create(
-            $validate
+            $data
         );
 
-        return redirect('admin/gallery')->with('success', 'Gallery\'s Image added successfully.');
+        return redirect('admin/gallery')->with(
+            [
+                'type' => 'success','title' => 'Input berhasil!', 'message' => 'Data berhasil ditambahkan!'
+            ]
+        );
     }
 
     /**
@@ -74,10 +94,25 @@ class GalleryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validate = $request->validate([
+        $validate = Validator::make($request->all(), [
             'caption' => 'required|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:20480',
+        ], [
+            'caption.required' => 'Caption tidak boleh kosong',
+            'caption.string' => 'Caption harus berupa string',
+            'caption.max' => 'Caption tidak boleh lebih dari :max karakter',
+            'image.required' => 'Gambar tidak boleh kosong',
+            'image.mimes' => 'Gambar harus berupa file dengan ekstensi jpeg, png, jpg, gif, atau webp',
+            'image.max' => 'Gambar tidak boleh lebih dari 5MB',
         ]);
+
+        if ($validate->fails()) {
+            return redirect()->back()->withErrors($validate)->withInput()->with([
+                'type' => 'danger','title' => 'Invalid Input', 'message' => 'Input yang Anda masukkan tidak sesuai, mohon coba lagi'
+            ]);
+        }
+
+        $data = $validate->validated();
 
         $gallery = Gallery::findOrFail($id);
 
@@ -86,11 +121,13 @@ class GalleryController extends Controller
                 Storage::disk('public')->delete($gallery->image);
             }
 
-            $validate['image'] = $request->file('image')->store('images/gallery', 'public');
+            $data['image'] = $request->file('image')->store('images/gallery', 'public');
         }
 
-        $gallery->update($validate);
-        return redirect('admin/gallery')->with('success', 'Gallery\'s Image updated  successfully.');
+        $gallery->update($data);
+        return redirect('admin/gallery')->with(            [
+            'type' => 'success','title' => 'Input berhasil!', 'message' => 'Data berhasil ditambahkan!'
+        ]);
     }
 
     /**
@@ -105,6 +142,8 @@ class GalleryController extends Controller
         }
 
         $guru->delete();
-        return redirect()->back()->with('success', 'Guru deleted successfully.');
+        return redirect()->back()->with([
+            'type' => 'success','title' => 'Input berhasil!', 'message' => 'Data berhasil ditambahkan!'
+        ]);
     }
 }

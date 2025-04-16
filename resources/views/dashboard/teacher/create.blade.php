@@ -36,16 +36,25 @@
                 <input type="file" name="foto" id="foto" {{isset($teacher->foto) ? '' : 'required'}} class="form-image-upload">
             </div>
             
+            @error('foto')
+                <div class="error">{{$message}}</div>
+            @enderror
         </div>
 
         <div class="form-child">
             <label for="nama" class="">Name</label>
-            <input type="text" name="nama" id="nama" required class="w-full p-2 border rounded" value="{{$teacher->nama ?? ''}}">
+            <input type="text" name="nama" id="nama" required class="w-full p-2 border rounded" value="{{ old('nama') ?? ($teacher->nama ?? '') }}">
+            @error('nama')
+                <div class="error">{{$message}}</div>
+            @enderror
         </div>
 
         <div class="form-child">
             <label for="mapel" class="block text-gray-700">Subject</label>
-            <input type="text" name="mapel" id="mapel" required class="w-full p-2 border rounded" value="{{$teacher->mapel ?? ''}}">
+            <input type="text" name="mapel" id="mapel" required class="w-full p-2 border rounded" value="{{ old('mapel') ?? ($teacher->mapel ?? '') }}">
+            @error('mapel')
+                <div class="error">{{$message}}</div>
+            @enderror
         </div>
 
         <!-- Submit Button -->

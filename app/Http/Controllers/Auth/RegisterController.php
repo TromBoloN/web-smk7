@@ -16,23 +16,23 @@ class RegisterController extends Controller
         return view('auth.register');
     }
 
-    public function register(Request $request)
-    {
-        $request->validate([
-            'username' => 'required|string|max:40',
-            'email' => 'required|string|email|max:40|unique:user',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
+    // public function register(Request $request)
+    // {
+    //     $request->validate([
+    //         'username' => 'required|string|max:40',
+    //         'email' => 'required|string|email|max:40|unique:user',
+    //         'password' => 'required|string|min:6|confirmed',
+    //     ]);
 
-        $user = User::create([
-            'username' => $request->username,
-            'email' => $request->email,
-            'password' => Hash::make($request->password), // Password should be hashed
-            'role' => 'admin',
-        ]);
+    //     $user = User::create([
+    //         'username' => $request->username,
+    //         'email' => $request->email,
+    //         'password' => Hash::make($request->password), // Password should be hashed
+    //         'role' => 'admin',
+    //     ]);
 
-        Auth::login($user);
+    //     Auth::login($user);
 
-        return redirect('/');
-    }
+    //     return redirect('/');
+    // }
 }

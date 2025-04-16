@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Guru;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class GuruController extends Controller
 {
@@ -21,21 +22,42 @@ class GuruController extends Controller
 
     public function store(Request $request)
     {
-        $validate = $request->validate([
+        $validate = Validator::make($request->all(), [
             'nama' => 'required|string|max:255',
             'mapel' => 'required|string|max:255',
-            'foto' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:20480',
+            'foto' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+        ], [
+            'nama.required' => 'Nama guru tidak boleh kosong',
+            'nama.string' => 'Nama guru harus berupa string',
+            'nama.max' => 'Nama guru tidak boleh lebih dari :max karakter',
+            'mapel.required' => 'Mata pelajaran tidak boleh kosong',
+            'mapel.string' => 'Mata pelajaran harus berupa string',
+            'mapel.max' => 'Mata pelajaran tidak boleh lebih dari :max karakter',
+            'foto.required' => 'Foto guru tidak boleh kosong',
+            'foto.mimes' => 'Foto guru harus berupa file dengan ekstensi jpeg, png, jpg, gif, atau webp',
+            'foto.max' => 'Foto guru tidak boleh lebih dari 2MB',
         ]);
 
+        if ($validate->fails()) {
+            return redirect()->back()->withErrors($validate)->withInput()->with([
+                'type' => 'danger','title' => 'Invalid Input', 'message' => 'Input yang Anda masukkan tidak sesuai, mohon coba lagi'
+            ]);
+        }
+
+        $data = $validate->validated();
+
         if ($request->hasFile('foto')) {
-            $validate['foto'] = $request->file('foto')->store('images/teachers', 'public');
+            $data['foto'] = $request->file('foto')->store('images/teachers', 'public');
         }
 
         Guru::create(
-            $validate
+            $data
         );
 
-        return redirect('admin/teachers')->with('success', 'Guru added successfully.');
+        return redirect('admin/teachers')->with([
+                'type' => 'success','title' => 'Input berhasil!', 'message' => 'Data berhasil ditambahkan!'
+            ]
+        );
     }
 
     public function edit($id)
@@ -46,11 +68,29 @@ class GuruController extends Controller
 
     public function update(Request $request, $id)
     {
-        $validate = $request->validate([
+        $validate =  Validator::make($request->all(), [
             'nama' => 'required|string|max:255',
             'mapel' => 'required|string|max:255',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+        ], [
+            'nama.required' => 'Nama guru tidak boleh kosong',
+            'nama.string' => 'Nama guru harus berupa string',
+            'nama.max' => 'Nama guru tidak boleh lebih dari :max karakter',
+            'mapel.required' => 'Mata pelajaran tidak boleh kosong',
+            'mapel.string' => 'Mata pelajaran harus berupa string',
+            'mapel.max' => 'Mata pelajaran tidak boleh lebih dari :max karakter',
+            'foto.required' => 'Foto guru tidak boleh kosong',
+            'foto.mimes' => 'Foto guru harus berupa file dengan ekstensi jpeg, png, jpg, gif, atau webp',
+            'foto.max' => 'Foto guru tidak boleh lebih dari 2MB',
         ]);
+
+        if ($validate->fails()) {
+            return redirect()->back()->withErrors($validate)->withInput()->with([
+                'type' => 'danger','title' => 'Invalid Input', 'message' => 'Input yang Anda masukkan tidak sesuai, mohon coba lagi'
+            ]);
+        }
+
+        $data = $validate->validated();
 
         $teacher = Guru::findOrFail($id);
 
@@ -59,11 +99,16 @@ class GuruController extends Controller
                 Storage::disk('public')->delete($teacher->foto);
             }
 
-            $validate['foto'] = $request->file('foto')->store('thumbnails', 'public');
+            $data['foto'] = $request->file('foto')->store('thumbnails', 'public');
         }
 
-        $teacher->update($validate);
-        return redirect('admin/teachers')->with('success', 'Guru updated successfully.');
+        $teacher->update($data);
+
+        return redirect('admin/teachers')->with(
+            [
+                'type' => 'success','title' => 'Input berhasil!', 'message' => 'Data berhasil diubah!'
+            ]
+        );
     }
 
     public function destroy($id)
@@ -76,7 +121,9 @@ class GuruController extends Controller
 
         $guru->delete();
 
-        return redirect()->back()->with('success', 'Guru deleted successfully.');
+        return redirect()->back()->with([
+            'type' => 'success','title' => 'Data dihapus!', 'message' => 'Data berhasil dihapus!'
+        ] );
     }
 
     public function showTeachers()
