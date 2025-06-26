@@ -20,6 +20,8 @@
 
     <main>
         @yield('content')
+        
+        @stack('modals')
     </main>
 
     <footer>

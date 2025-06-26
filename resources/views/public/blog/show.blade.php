@@ -43,7 +43,6 @@
             <div class='blog-content'>
                 {!! $post->content !!}
             </div>
-
         </section>
 
        <section class="fcol comment-container">
@@ -111,4 +110,47 @@
     </main>
     
 
+@endsection
+
+@push('modals')
+    <!-- Modal PDF -->
+    <div class="modal" id="modal-file" style="z-index:9999">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title text-black" id="title">Lihat File</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal Body with iframe -->
+                <div class="modal-body">
+                    <iframe src="" width="100%" height="400px" frameborder="0"></iframe>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tidak Setuju</button>
+                    <a download href="https://site.smkn7-smr.sch.id/documents/surat_tatib.docx" class="btn btn-primary">Ya, Saya Setuju</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+@endpush
+
+@section('script')
+<script>
+    $(function() {
+      $(document).on('click', '.btn-file', function() {
+          const title = $(this).attr('data-title');
+          const src = $(this).attr('data-src');
+
+          $('#modal-file #title').html(title)
+          $('#modal-file iframe').attr('src', src)
+          $('#modal-file').modal('show')
+      })
+    });
+</script>
 @endsection
