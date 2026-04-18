@@ -64,24 +64,6 @@ Beberapa area yang masih menjadi fokus perbaikan:
 
 ---
 
-## Kenapa Proyek Ini Menarik
-
-Proyek ini bukan sekadar aplikasi latihan sederhana.  
-Website ini sudah mencakup hal-hal yang umum ditemui pada proyek web nyata, seperti:
-
-- pemisahan halaman publik dan admin
-- autentikasi
-- CRUD konten
-- upload file / gambar
-- manajemen artikel
-- komentar
-- validasi form
-- konten yang terhubung ke database
-
-Karena itu, repositori ini tetap relevan sebagai bagian dari portofolio, meskipun masih ada beberapa bagian yang sedang dirapikan lebih lanjut.
-
----
-
 ## Instalasi
 
 ### Kebutuhan Sistem
@@ -138,36 +120,6 @@ Beberapa bagian masih mencerminkan kondisi implementasi awal dan sedang diperbai
 
 ---
 
-## Rencana Perbaikan
-
-- [x] Mengganti README bawaan Laravel dengan dokumentasi proyek
-- [ ] Menambahkan screenshot tampilan website
-- [ ] Menambahkan penjelasan struktur folder penting
-- [ ] Memperbaiki authorization pada aksi publik tertentu
-- [ ] Memperbaiki relasi model dan rollback migration
-- [ ] Merapikan logika search / filter
-- [ ] Menjaga slug artikel tetap stabil setelah dibuat
-- [ ] Merapikan inkonsistensi UI dan validasi
-- [ ] Menambahkan data contoh / seed jika diperlukan
-
----
-
-## Kontribusi Saya
-
-Beberapa hal yang saya kerjakan pada proyek ini meliputi:
-- pengembangan dan integrasi fitur halaman publik
-- pengelolaan konten berbasis admin
-- fitur artikel / blog dan bagian terkait
-- debugging serta perapihan kode
-- dokumentasi ulang dan perbaikan repo untuk kebutuhan portofolio
-
----
-
-## Screenshot
-
-Masih akan ditambahkan.
-
----
 
 ## Lisensi
 
