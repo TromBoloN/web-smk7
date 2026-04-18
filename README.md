@@ -1,80 +1,97 @@
 # Web SMK 7
 
-Website profile sekolah berbasis Laravel untuk menampilkan informasi sekolah, berita, galeri, data guru, dan panel admin untuk pengelolaan konten.
+Website profil sekolah berbasis **Laravel** yang dirancang untuk menampilkan informasi sekolah, berita, galeri, data guru, serta menyediakan panel admin untuk pengelolaan konten.
 
-## Overview
+---
 
-Web SMK 7 is a school profile website built as a collaborative academic project.  
-The application provides public-facing pages for school information and a simple admin panel for managing website content.
+## Tentang Proyek
 
-This repository is being preserved and gradually cleaned up as a portfolio project to document both the original implementation and later improvements in structure, security, and maintainability.
+**Web SMK 7** merupakan proyek website profil sekolah yang dikembangkan secara kolaboratif dalam konteks akademik.  
+Aplikasi ini memiliki dua sisi utama:
 
-## Main Features
+- **Halaman publik** untuk menampilkan informasi sekolah kepada pengunjung
+- **Panel admin** untuk mengelola konten website secara dinamis
 
-### Public pages
-- Home page
-- School profile / history pages
-- Vision and mission
-- Program keahlian / konsentrasi keahlian pages
-- Facilities / sarana prasarana pages
-- Industry relations page
-- Teachers page
-- Gallery page
-- Blog/news listing
-- Blog detail page
-- Blog search by keyword and category
-- Public comment submission on blog posts
+Repositori ini juga menjadi bagian dari dokumentasi dan proses _cleanup_ lanjutan untuk keperluan portofolio, terutama dalam aspek struktur kode, keamanan, dan maintainability.
 
-### Admin pages
-- Admin dashboard
-- Blog CRUD
-- Teacher CRUD
-- Gallery CRUD
-- CKEditor image upload
+---
 
-## Tech Stack
+## Fitur Utama
+
+### Halaman Publik
+- Beranda
+- Profil / sejarah sekolah
+- Visi dan misi
+- Halaman program keahlian / konsentrasi keahlian
+- Halaman fasilitas / sarana prasarana
+- Halaman hubungan industri
+- Halaman data guru
+- Halaman galeri
+- Daftar berita / blog
+- Detail berita / artikel
+- Pencarian artikel berdasarkan kata kunci dan kategori
+- Form komentar publik pada artikel
+
+### Panel Admin
+- Dashboard admin
+- CRUD artikel / blog
+- CRUD data guru
+- CRUD galeri
+- Upload gambar untuk CKEditor
+
+---
+
+## Teknologi yang Digunakan
 
 - **Backend:** Laravel 10
 - **Frontend:** Blade, Livewire 3, Tailwind CSS, Vite
 - **Database:** MySQL
-- **Other package:** mews/captcha
+- **Package tambahan:** mews/captcha
 
-## Project Status
+---
 
-This project is currently being cleaned up and documented for portfolio purposes.
+## Status Proyek
 
-Known improvement areas include:
-- authorization hardening
-- relationship and migration fixes
-- search/filter cleanup
-- URL/slug stability
-- UI consistency
-- better project documentation
+Saat ini proyek ini sedang dalam tahap **perapihan dan dokumentasi ulang** untuk kebutuhan portofolio.
 
-## Why this project matters
+Beberapa area yang masih menjadi fokus perbaikan:
+- penguatan otorisasi
+- perbaikan relasi model dan migrasi
+- perapihan logika filter / pencarian
+- stabilitas slug / URL artikel
+- konsistensi antarmuka
+- dokumentasi proyek yang lebih baik
 
-This was not just a tutorial app.  
-It was a more practical content-managed web project with:
-- public and admin sides
-- authentication
-- file uploads
-- content CRUD
-- dynamic blog pages
-- comments
-- form validation
-- database-backed content
+---
 
-Because of that, this repository is useful as a record of real collaborative work, even though some parts still need refactoring.
+## Kenapa Proyek Ini Menarik
 
-## Installation
+Proyek ini bukan sekadar aplikasi latihan sederhana.  
+Website ini sudah mencakup hal-hal yang umum ditemui pada proyek web nyata, seperti:
 
-### Requirements
-- PHP 8.1+
+- pemisahan halaman publik dan admin
+- autentikasi
+- CRUD konten
+- upload file / gambar
+- manajemen artikel
+- komentar
+- validasi form
+- konten yang terhubung ke database
+
+Karena itu, repositori ini tetap relevan sebagai bagian dari portofolio, meskipun masih ada beberapa bagian yang sedang dirapikan lebih lanjut.
+
+---
+
+## Instalasi
+
+### Kebutuhan Sistem
+- PHP 8.1 atau lebih baru
 - Composer
-- Node.js + npm
+- Node.js dan npm
 - MySQL
 
-### Setup
+### Langkah Instalasi
+
 ```bash
 git clone https://github.com/TromBoloN/web-smk7.git
 cd web-smk7
@@ -84,3 +101,75 @@ npm install
 
 cp .env.example .env
 php artisan key:generate
+```
+
+### Konfigurasi Environment
+
+Buka file `.env`, lalu sesuaikan konfigurasi database:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=nama_database
+DB_USERNAME=username_database
+DB_PASSWORD=password_database
+```
+
+### Menjalankan Migrasi
+
+```bash
+php artisan migrate
+```
+
+### Menjalankan Project
+
+```bash
+npm run dev
+php artisan serve
+```
+
+---
+
+## Catatan
+
+Repositori ini merepresentasikan proyek akademik yang dikembangkan secara kolaboratif.  
+Beberapa bagian masih mencerminkan kondisi implementasi awal dan sedang diperbaiki secara bertahap sebagai bagian dari proses pembelajaran, dokumentasi, dan pengembangan portofolio.
+
+---
+
+## Rencana Perbaikan
+
+- [x] Mengganti README bawaan Laravel dengan dokumentasi proyek
+- [ ] Menambahkan screenshot tampilan website
+- [ ] Menambahkan penjelasan struktur folder penting
+- [ ] Memperbaiki authorization pada aksi publik tertentu
+- [ ] Memperbaiki relasi model dan rollback migration
+- [ ] Merapikan logika search / filter
+- [ ] Menjaga slug artikel tetap stabil setelah dibuat
+- [ ] Merapikan inkonsistensi UI dan validasi
+- [ ] Menambahkan data contoh / seed jika diperlukan
+
+---
+
+## Kontribusi Saya
+
+Beberapa hal yang saya kerjakan pada proyek ini meliputi:
+- pengembangan dan integrasi fitur halaman publik
+- pengelolaan konten berbasis admin
+- fitur artikel / blog dan bagian terkait
+- debugging serta perapihan kode
+- dokumentasi ulang dan perbaikan repo untuk kebutuhan portofolio
+
+---
+
+## Screenshot
+
+Masih akan ditambahkan.
+
+---
+
+## Lisensi
+
+Repositori ini dipublikasikan untuk kebutuhan pembelajaran dan portofolio, kecuali terdapat batasan tertentu dari pihak kolaborator atau institusi terkait.
+
